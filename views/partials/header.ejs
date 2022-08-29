@@ -1,0 +1,16 @@
+<header class="header flex">
+  <a href="#">
+      <h1>recipeFork</h1>
+  </a>
+  <nav class="nav-button-container">
+      <a href="/" class="headerLink">Home</a>
+      <a href="/dashboard" class="headerLink">Recipes</a>
+      <a href="/about" class="headerLink">About</a>
+      <% if(!user){ %>
+        <a href="/login" class="headerLink">Log in</a>
+        <a href="/signup" class="headerLink">Sign up</a>
+      <% }else { %>
+        <a href="/logout" class="headerLink">Log out</a>
+    <% } %>
+  </nav>
+</header>

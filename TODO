@@ -1,0 +1,19 @@
+Controller logic for logged in display of 
+Style pages
+  Header
+  Footer partial?
+  Forms
+Database Schema for recipes/repositories + userhomepage?
+
+Create recipes
+Modify recipes (add/commit??)
+Get recipes + display with pagination
+Fork recipes from other users
+
+Search functionalities
+  by user
+  by ingredient
+  by tag?
+
+
+Finish making TODO
