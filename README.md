@@ -4,9 +4,12 @@ recipeFork is a new way of managing, sharing, updating, and creating recipes tha
 
 Since recipes are (generally) far simpler than software, much of the usual headaches from version control are absent, while the advantages remain.
 
+recipeFork is still in early development, when there's a product worth seeing, you'll find a photo of it and a link to the live project here.
+
+
 ---
 
-# Packages/Dependencies used 
+# Technology Packages/Dependencies used 
 
 bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mongodb, mongoose, morgan, nodemon, passport, passport-local, validator
 
@@ -17,8 +20,6 @@ bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mon
 ```
 npm install
 ``` 
-
----
 
 ## Then
 
