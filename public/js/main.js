@@ -1,27 +1,23 @@
 const deleteBtn = document.querySelectorAll('.del')
 const todoItem = document.querySelectorAll('span.not')
-const todoComplete = document.querySelectorAll('span.completed')
 
 Array.from(deleteBtn).forEach((el)=>{
-    el.addEventListener('click', deleteTodo)
+    el.addEventListener('click', deleteRecipe)
 })
 
 Array.from(todoItem).forEach((el)=>{
-    el.addEventListener('click', markComplete)
+    el.addEventListener('click', modifyRecipe)
 })
 
-Array.from(todoComplete).forEach((el)=>{
-    el.addEventListener('click', markIncomplete)
-})
 
-async function deleteTodo(){
-    const todoId = this.parentNode.dataset.id
+async function deleteRecipe(){
+    const recipeId = this.parentNode.dataset.id
     try{
-        const response = await fetch('dashboard/deleteTodo', {
+        const response = await fetch('dashboard/deleteRecipe', {
             method: 'delete',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
-                'todoIdFromJSFile': todoId
+                'recipeId': recipeId
             })
         })
         const data = await response.json()
@@ -32,32 +28,14 @@ async function deleteTodo(){
     }
 }
 
-async function markComplete(){
-    const todoId = this.parentNode.dataset.id
+async function modifyRecipe(){
+    const recipeId = this.parentNode.dataset.id
     try{
-        const response = await fetch('dashboard/markComplete', {
+        const response = await fetch('dashboard/modifyRecipe', {
             method: 'put',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
-                'todoIdFromJSFile': todoId
-            })
-        })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
-    }catch(err){
-        console.log(err)
-    }
-}
-
-async function markIncomplete(){
-    const todoId = this.parentNode.dataset.id
-    try{
-        const response = await fetch('dashboard/markIncomplete', {
-            method: 'put',
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({
-                'todoIdFromJSFile': todoId
+                'recipeIdFromJSFile': recipeId
             })
         })
         const data = await response.json()

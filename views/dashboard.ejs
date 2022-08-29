@@ -11,15 +11,15 @@
     <%- include('partials/header') -%>
     <h1>Welcome, <%=user.userName%></h1>
 
-    <% todos.forEach( el => { %>
-        <li class='todoItem' data-id='<%=el._id%>'>
+    <% recipes.forEach( el => { %>
+        <li class='recipeItem' data-id='<%=el._id%>'>
             <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
             <span class='del'> Delete </span>
         </li>
 <% }) %>    
 </ul>
-    <form action="/dashboard/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+    <form action="/dashboard/createRecipe" method='POST'>
+        <input type="text" placeholder="Enter Recipe Item" name='recipe Item'>
         <input type="submit">
     </form>
 
