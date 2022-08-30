@@ -4,7 +4,7 @@ recipeFork is a new way of managing, sharing, updating, and creating recipes tha
 
 Since recipes are (generally) far simpler than software, much of the usual headaches from version control are absent, while the advantages remain.
 
-recipeFork is still in early development, when there's a product worth seeing, you'll find a photo of it and a link to the live project here.
+recipeFork is still in early development, when there's something users can interact with you'll find a photo of it and a link to the live project here.
 
 
 ---
