@@ -1,19 +1,25 @@
-Controller logic for logged in display of 
 Style pages
   Header
   Footer partial?
   Forms
 Database Schema for recipes/repositories + userhomepage?
+  add category vs tags
+  branching...
+
 
 Create recipes
-Modify recipes (add/commit??)
-Get recipes + display with pagination
-Fork recipes from other users
+Modify recipes (add/commit??, ensure authentication)
+Delete recipes (ensure logged in)
+Get recipes + 
+Get recipe (single page display)
+Fork recipes from other users (ensure logged in, else redirect to login page)
 
 Search functionalities
   by user
   by ingredient
   by tag?
 
+
+Markdown + instruction/ingredient formatting? + preview
 
 Finish making TODO

@@ -2,21 +2,23 @@ const Recipe = require('../models/Recipe')
 const User = require('../models/User')
 
 module.exports = {
-    getRecipes: async (req,res) => {
-        console.log(req.user)
+    getRecipes: async (req, res) => {
         try{
             if (req.user) {
-                // const user = await User.find({_id: req.user.id})
                 const recipes = await Recipe.find({userId: req.user.id})
-                // const itemsLeft = await Recipe.countDocuments({userId:req.user.id,completed: false})
                 res.render('dashboard.ejs', {recipes: recipes, user: req.user})
             } else {
                 res.render('dashboard.ejs', {user: null})
             }
-            
         } catch(err) {
             console.log(err)
         }
+    },
+    getRecipe: async (req, res) => {
+        console.log(req.params.recipeId)
+        const recipe = await Recipe.findById(req.params.recipeId)
+        console.log(recipe)
+        res.render('recipe.ejs', {user: req.user, recipe: recipe})
     },
     createRecipe: async (req, res) => {
         try {

@@ -4,28 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>recipeFork - Dashboard</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>recipeFork - <%=user.userName%>/<%=recipe.title%></title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <%- include('partials/header') -%>
-    <!-- <% console.log(user) %> -->
-    <h1>Welcome, <%=user.userName%></h1>
-    <ul>
-    <% recipes.forEach( el => { %>
-        <li class='recipeItem' data-id='<%=el._id%>'>
-            <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-            <h3><%=el.title%></h3>
-            <% if (el.description.length > 0)%>
-                <p><%=el.description%></p>
-            <p><%=el.ingredients%></p>
-            <p><%=el.instructions%></p>
-            <p><%=el._id%></p>
+    <h1><%=recipe.title%></h1>
+        <div class="recipe-body">
+            <% if (recipe.description.length > 0)%>
+                <p><%=recipe.description%></p>
+            <p><%=recipe.ingredients%></p>
+            <p><%=recipe.instructions%></p>
+            <p><%=recipe._id%></p>
             <span class='del'> Delete </span>
-        </li>
-    <% }) %>    
-    </ul>
-    <div class="form flex col">
+        </div>
+    <!-- Make edit into modal possibly a drop-in partial view for it to avoid wet code? -->
+    <!-- <div class="form flex col">
         <h2></h2>
         <form action="/dashboard/createRecipe" method='POST' class="flex col">
             <input type="text" name="title" placeholder="Recipe Title">
@@ -34,7 +28,7 @@
             <input type="text" placeholder="Instructions" name='instructions'>
             <input type="submit" value="Create Recipe">
         </form>
-    </div>
+    </div> -->
 
     <script src="js/main.js"></script>
 </body>

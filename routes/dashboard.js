@@ -11,4 +11,6 @@ router.put('/modifyRecipe', dashboardController.modifyRecipe)
 
 router.delete('/deleteRecipe', dashboardController.deleteRecipe)
 
+router.get('/:recipeId', dashboardController.getRecipe)
+
 module.exports = router
