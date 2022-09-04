@@ -6,10 +6,13 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const flash = require('express-flash')
 const logger = require('morgan')
+const { removeTrailingSlash } = require('./middleware/redirectSlash')
+
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const aboutRoutes = require('./routes/about')
 const dashboardRoutes = require('./routes/dashboard')
+
 
 require('dotenv').config()
 
@@ -38,6 +41,8 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(flash())
+
+app.use(removeTrailingSlash)
   
 app.use('/', mainRoutes)
 app.use('/dashboard', dashboardRoutes)
