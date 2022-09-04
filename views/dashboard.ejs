@@ -12,20 +12,22 @@
     <!-- <% console.log(user) %> -->
     <article class="content-container">
         <h1>Welcome <%=user.userName%>,</h1>
-        <ul>
+        <section>
         <% recipes.forEach( el => { %>
-            <li class='recipeItem' data-id='<%=el._id%>'>
-                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-                <h3><%=el.title%></h3>
-                <% if (el.description.length > 0)%>
-                    <p><%=el.description%></p>
+            <article class='recipeItem shadow' data-id='<%=el._id%>'>
+                <a href="dashboard/<%=el._id%>">
+                    <h3 class="center"><%=el.title%></h3>
+                </a>
+                <% if (el.description.length > 0) { %>
+                    <p><%=el.description.slice(0,255) + '...'%></p>
+                <% } %>
                 <p><%=el.ingredients%></p>
                 <p><%=el.instructions%></p>
                 <p><%=el._id%></p>
-                <span class='del'> Delete </span>
-            </li>
+                <!-- <span class='del'> Delete </span> -->
+            </article>
         <% }) %>    
-        </ul>
+        </section>
         <section class="content-container">
             <h2 class="center">Add Recipe</h2>
             <form action="/dashboard/createRecipe" method='POST' class="flex col">

@@ -9,8 +9,8 @@
 </head>
 <body>
     <%- include('partials/header') -%>
-    <h1><%=recipe.title%></h1>
-        <div class="recipe-body">
+    <h1 class="center"><%=recipe.title%></h1>
+        <div class="content-container recipe-body shadow">
             <% if (recipe.description.length > 0)%>
                 <p><%=recipe.description%></p>
             <p><%=recipe.ingredients%></p>

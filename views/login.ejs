@@ -10,7 +10,7 @@
 <body>
     
     <%- include('partials/header') -%>
-    <section class="content-container">
+    <section class="content-container signin shadow">
         <h2 class="center">Login</h2>
         <% if (locals.messages.errors) { %>
             <% messages.errors.forEach( el => { %>
@@ -25,7 +25,7 @@
         <form action="/login" method="POST" class="flex col">
             <input type="email" name="email" placeholder="Email">
             <input type="password" name="password" placeholder="Password">
-            <input type="submit">
+            <input type="submit" value="Login">
     </section>
 </body>
 </html>
