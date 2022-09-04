@@ -1,5 +1,12 @@
+const User = require('../models/User')
+
 module.exports = {
-  getIndex: (req,res)=>{
+  getIndex: async (req,res) => {
+    if (req.user) {
+      const user = await User.find({_id: req.user.id})
+      res.render('about.ejs', {user: user}) 
+    } else {
       res.render('about.ejs', {user: null})
+    }
   }
 }
