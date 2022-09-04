@@ -6,10 +6,10 @@ module.exports = {
         console.log(req.user)
         try{
             if (req.user) {
-                const user = await User.find({_id: req.user.id})
-                const recipes = await Recipe.find({userId:req.user.id})
-                const itemsLeft = await Recipe.countDocuments({userId:req.user.id,completed: false})
-                res.render('dashboard.ejs', {recipes: recipes, left: itemsLeft, user: user})
+                // const user = await User.find({_id: req.user.id})
+                const recipes = await Recipe.find({userId: req.user.id})
+                // const itemsLeft = await Recipe.countDocuments({userId:req.user.id,completed: false})
+                res.render('dashboard.ejs', {recipes: recipes, user: req.user})
             } else {
                 res.render('dashboard.ejs', {user: null})
             }
@@ -20,7 +20,13 @@ module.exports = {
     },
     createRecipe: async (req, res) => {
         try {
-            await Recipe.create({recipe: req.body.recipeItem, completed: false, userId: req.user.id})
+            await Recipe.create({
+                title: req.body.title,
+                description: req.body.description || '',
+                instructions: req.body.instructions, 
+                ingredients:req.body.ingredients, 
+                userId: req.user.id
+            })
             console.log('Recipe has been added!')
             res.redirect('/dashboard')
         } catch(err) {

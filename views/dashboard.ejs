@@ -9,19 +9,31 @@
 </head>
 <body>
     <%- include('partials/header') -%>
+    <!-- <% console.log(user) %> -->
     <h1>Welcome, <%=user.userName%></h1>
-
+    <ul>
     <% recipes.forEach( el => { %>
         <li class='recipeItem' data-id='<%=el._id%>'>
             <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+            <h3><%=el.title%></h3>
+            <% if (el.description.length > 0)%>
+                <p><%=el.description%></p>
+            <p><%=el.ingredients%></p>
+            <p><%=el.instructions%></p>
             <span class='del'> Delete </span>
         </li>
-<% }) %>    
-</ul>
-    <form action="/dashboard/createRecipe" method='POST'>
-        <input type="text" placeholder="Enter Recipe Item" name='recipe Item'>
-        <input type="submit">
-    </form>
+    <% }) %>    
+    </ul>
+    <div class="form flex col">
+        <h2></h2>
+        <form action="/dashboard/createRecipe" method='POST' class="flex col">
+            <input type="text" name="title" placeholder="Recipe Title">
+            <input type="text" placeholder="Description (optional)" name='description'>
+            <input type="text" placeholder="Ingredients" name='ingredients'>
+            <input type="text" placeholder="Instructions" name='instructions'>
+            <input type="submit" value="Create Recipe">
+        </form>
+    </div>
 
     <script src="js/main.js"></script>
 </body>
