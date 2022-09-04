@@ -4,7 +4,7 @@ const User = require('../models/User')
 
  exports.getLogin = (req, res) => {
     if (req.user) {
-      return res.redirect('/dashboard')
+      return res.redirect(`/${user.username}`)
     }
     res.render('login', {
       title: 'Login', user: null
@@ -31,7 +31,7 @@ const User = require('../models/User')
       req.logIn(user, (err) => {
         if (err) { return next(err) }
         req.flash('success', { msg: 'Success! You are logged in.' })
-        res.redirect(req.session.returnTo || '/dashboard')
+        res.redirect(req.session.returnTo || `/${user.username}`)
       })
     })(req, res, next)
   }
@@ -47,7 +47,7 @@ const User = require('../models/User')
   
   exports.getSignup = (req, res) => {
     if (req.user) {
-      return res.redirect('/dashboard')
+      return res.redirect(`/${user.username}`)
     }
     res.render('signup', {
       title: 'Create Account', user: null
@@ -67,14 +67,14 @@ const User = require('../models/User')
     req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
   
     const user = new User({
-      userName: req.body.userName,
+      username: req.body.username,
       email: req.body.email,
       password: req.body.password
     })
   
     User.findOne({$or: [
       {email: req.body.email},
-      {userName: req.body.userName}
+      {username: req.body.username}
     ]}, (err, existingUser) => {
       if (err) { return next(err) }
       if (existingUser) {
@@ -87,7 +87,7 @@ const User = require('../models/User')
           if (err) {
             return next(err)
           }
-          res.redirect('/dashboard')
+          res.redirect(`/${user.username}`)
         })
       })
     })

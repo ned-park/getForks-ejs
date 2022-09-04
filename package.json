@@ -1,7 +1,7 @@
 {
-  "name": "todo-mvc-auth-local",
+  "name": "recipeFork",
   "version": "1.0.0",
-  "description": "",
+  "description": "A recipe sharing web app that uses simplified version control to improve user experience.",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",

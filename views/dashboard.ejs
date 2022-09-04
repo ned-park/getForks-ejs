@@ -9,13 +9,13 @@
 </head>
 <body>
     <%- include('partials/header') -%>
-    <!-- <% console.log(user) %> -->
+    <% console.log(user) %>
     <article class="content-container">
-        <h1>Welcome <%=user.userName%>,</h1>
+        <h1 username="<%=usernamePage%>"><% if (user.username === usernamePage) {%>Welcome <% } %><%= usernamePage %>,</h1>
         <section>
         <% recipes.forEach( el => { %>
             <article class='recipeItem shadow' data-id='<%=el._id%>'>
-                <a href="dashboard/<%=el._id%>">
+                <a href="<%=usernamePage%>/<%=el._id%>">
                     <h3 class="center"><%=el.title%></h3>
                 </a>
                 <% if (el.description.length > 0) { %>
@@ -24,13 +24,13 @@
                 <p><%=el.ingredients%></p>
                 <p><%=el.instructions%></p>
                 <p><%=el._id%></p>
-                <!-- <span class='del'> Delete </span> -->
+                <span class='del'> Delete </span>
             </article>
         <% }) %>    
         </section>
         <section class="content-container">
             <h2 class="center">Add Recipe</h2>
-            <form action="/dashboard/createRecipe" method='POST' class="flex col">
+            <form action="/<%=usernamePage%>/createRecipe" method='POST' class="flex col">
                 <input type="text" name="title" placeholder="Recipe Title">
                 <input type="text" placeholder="Description (optional)" name='description'>
                 <input type="text" placeholder="Ingredients" name='ingredients'>

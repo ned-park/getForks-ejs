@@ -4,11 +4,18 @@ const User = require('../models/User')
 module.exports = {
     getRecipes: async (req, res) => {
         try{
-            if (req.user) {
-                const recipes = await Recipe.find({userId: req.user.id})
-                res.render('dashboard.ejs', {recipes: recipes, user: req.user})
+            let usernamePage = req.baseUrl.slice(1,)
+            let userForDisplay = await User.findOne({username: usernamePage})
+            userForDisplay = {
+                username: userForDisplay.username, 
+                _id: userForDisplay._id
+            }
+            console.log(userForDisplay)
+            if (/*req.user*/ userForDisplay) {
+                const recipes = await Recipe.find({userId: userForDisplay._id})
+                res.render('dashboard.ejs', {recipes: recipes, user: req.user, usernamePage: userForDisplay.username})
             } else {
-                res.render('dashboard.ejs', {user: null})
+                res.render('dashboard.ejs', {user: null, usernamePage: usernamePage})
             }
         } catch(err) {
             console.log(err)
@@ -17,7 +24,7 @@ module.exports = {
     getRecipe: async (req, res) => {
         console.log(req.params.recipeId)
         const recipe = await Recipe.findById(req.params.recipeId)
-        console.log(recipe)
+        // console.log(recipe)
         res.render('recipe.ejs', {user: req.user, recipe: recipe})
     },
     createRecipe: async (req, res) => {
@@ -30,7 +37,7 @@ module.exports = {
                 userId: req.user.id
             })
             console.log('Recipe has been added!')
-            res.redirect('/dashboard')
+            res.redirect(`/${req.user.username}`)
         } catch(err) {
             console.log(err)
         }
@@ -47,7 +54,6 @@ module.exports = {
         }
     },
     deleteRecipe: async (req, res) => {
-        console.log(req.body.todoIdFromJSFile)
         try {
             await Recipe.findOneAndDelete({_id:req.body.recipeId})
             console.log('Deleted Recipe')

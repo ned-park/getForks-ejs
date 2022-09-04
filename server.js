@@ -45,7 +45,7 @@ app.use(flash())
 app.use(removeTrailingSlash)
   
 app.use('/', mainRoutes)
-app.use('/dashboard', dashboardRoutes)
+app.use('/:user', dashboardRoutes)
 app.use('/about', aboutRoutes)
  
 app.listen(process.env.PORT, ()=>{

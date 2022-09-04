@@ -1,19 +1,21 @@
 const deleteBtn = document.querySelectorAll('.del')
-const todoItem = document.querySelectorAll('span.not')
+const recipeItem = document.querySelectorAll('span.not')
 
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteRecipe)
 })
 
-Array.from(todoItem).forEach((el)=>{
+Array.from(recipeItem).forEach((el)=>{
     el.addEventListener('click', modifyRecipe)
 })
 
 
 async function deleteRecipe(){
     const recipeId = this.parentNode.dataset.id
+    const username = document.querySelector('h1').getAttribute(`username`)
+    console.log(username)
     try{
-        const response = await fetch('dashboard/deleteRecipe', {
+        const response = await fetch(`${username}/deleteRecipe`, {
             method: 'delete',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
@@ -31,7 +33,7 @@ async function deleteRecipe(){
 async function modifyRecipe(){
     const recipeId = this.parentNode.dataset.id
     try{
-        const response = await fetch('dashboard/modifyRecipe', {
+        const response = await fetch(`${username}/modifyRecipe`, {
             method: 'put',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
