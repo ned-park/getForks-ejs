@@ -20,13 +20,13 @@ async function deleteRecipe() {
     try{
         const response = await fetch(`/${username}/deleteRecipe`, {
             method: 'delete',
-            headers: {'Content-type': 'application/json'},
+            headers: {'Content-type': 'application/json', credentials: 'include'},
             body: JSON.stringify({
                 'recipeId': recipeId,
                 'username': username
             })
         })
-        window.location.replace(`/null`);
+        window.location.replace(`/${username}`);
     } catch(err) {
         console.log(err)
     }

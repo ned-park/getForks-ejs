@@ -4,8 +4,10 @@ const User = require('../models/User')
 module.exports = {
     getRecipes: async (req, res) => {
         try{
-            let usernamePage = req.baseUrl.slice(1,)
-            console.log(`req.baseUrl: ${req.baseURL}`)
+            let usernamePage = req.baseUrl.slice(1,) || req.user
+            // console.log({usernamePage})
+            // console.log(`req.user ${req.user}`)
+            // console.log(`req.baseUrl: ${req.baseURL}`)
             let userForDisplay = await User.findOne({username: usernamePage})
             if (!userForDisplay) userForDisplay = req.user
             userForDisplay = {
@@ -17,7 +19,9 @@ module.exports = {
                 const recipes = await Recipe.find({userId: userForDisplay._id})
                 res.render('dashboard.ejs', {recipes: recipes, user: req.user, usernamePage: userForDisplay.username})
             } else {
-                res.render('dashboard.ejs', {user: null, usernamePage: usernamePage})
+                // res.render('dashboard.ejs', {user: null, usernamePage: usernamePage})
+                res.render('about.ejs', {user: null, usernamePage: usernamePage})
+
             }
         } catch(err) {
             console.log(err)
