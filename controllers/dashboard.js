@@ -73,10 +73,10 @@ module.exports = {
     modifyRecipe: async (req, res) => {
         try {
             await Recipe.findOneAndUpdate({_id:req.body.recipeId}, {
-                completed: true
+                // completed: true
             })
-            console.log('Marked Complete')
-            res.json('Marked Complete')
+            console.log('Recipe updated')
+            res.json('Recipe updated')
         } catch(err) {
             console.log(err)
         }

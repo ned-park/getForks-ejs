@@ -1,6 +1,29 @@
 const deleteBtn = document.querySelectorAll('.del')
 const editBtn = document.querySelectorAll('.edit')
 const forkBtn = document.querySelectorAll('.fork')
+const modal = document.querySelector(".modal");
+const modalBtn = document.querySelector("#openModal");
+const modalClose = document.querySelector(".close")
+
+modalBtn.addEventListener('click', () => openModal(modal))
+modalClose.addEventListener('click', closeModal)
+
+
+// Modal Stuff, <<<move me later>>>
+function openModal(modal) {
+    console.log('opening modal')
+    modal.style.display = "block";
+  }
+  
+  function closeModal() {
+    modal.style.display = "none";
+  }
+  
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      closeModal()
+    }
+  } 
 
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteRecipe)
@@ -14,6 +37,8 @@ Array.from(forkBtn).forEach((el)=>{
     el.addEventListener('click', forkRecipe)
 })
 
+
+//Client-side API calls
 async function deleteRecipe() {
     const recipeId = this.parentNode.dataset.id
     const username = document.querySelector('h1').getAttribute('data-user')
@@ -50,3 +75,7 @@ async function modifyRecipe() {
         console.log(err)
     }
 }
+
+
+
+

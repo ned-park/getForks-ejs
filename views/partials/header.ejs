@@ -1,6 +1,10 @@
 <header class="header flex">
   <a href="/">
+    <% if (!user) { %>
+      <h1 data-user="null">recipeFork</h1>
+    <% } else { %>
       <h1 data-user="<%=user.username%>">recipeFork</h1>
+    <% } %>
   </a>
   <nav>
       <a href="/" class="headerLink">Home</a>

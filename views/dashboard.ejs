@@ -12,6 +12,7 @@
     <% console.log(user) %>
     <article class="content-container">
         <h1 username="<%=usernamePage%>"><% if (user != null && user.username === usernamePage) {%>Welcome <% } %><%= usernamePage %></h1>
+        <button id="openModal">Create Modal</button>
         <section>
         <% recipes.forEach( el => { %>
             <article class='recipeItem shadow' data-id='<%=el._id%>'>
@@ -25,7 +26,10 @@
             </article>
         <% }) %>    
         </section>
-        <section class="content-container">
+    </article>
+    <section class="modal">
+        <section class="content-container modal-content">
+            <span class="close">&times;</span>
             <h2 class="center">Add Recipe</h2>
             <form action="/<%=usernamePage%>/createRecipe" method='POST' class="flex col">
                 <input type="text" name="title" placeholder="Recipe Title">
@@ -35,7 +39,7 @@
                 <input type="submit" value="Create Recipe">
             </form>
         </section>
-    </article>
+    </section>
     <script src="js/main.js"></script>
 </body>
 </html>
