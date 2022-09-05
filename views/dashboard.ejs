@@ -21,10 +21,7 @@
                 <% if (el.description.length > 0) { %>
                     <p><%=el.description.slice(0,255) + '...'%></p>
                 <% } %>
-                <p><%=el.ingredients%></p>
-                <p><%=el.instructions%></p>
-                <p><%=el._id%></p>
-                <span class='del'> Delete </span>
+                <!-- <% if (user.username === usernamePage) {%><span class='del'> Delete </span><% } %> -->
             </article>
         <% }) %>    
         </section>

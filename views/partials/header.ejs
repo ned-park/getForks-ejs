@@ -4,7 +4,7 @@
   </a>
   <nav>
       <a href="/" class="headerLink">Home</a>
-      <a href="/dashboard" class="headerLink">Recipes</a>
+      <a href="<%=user? `/${user.username}` : `/login`%>" class="headerLink">Recipes</a>
       <a href="/about" class="headerLink">About</a>
       <% if (!user) { %>
         <a href="/login" class="headerLink">Log in</a>
