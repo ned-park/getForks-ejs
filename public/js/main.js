@@ -16,49 +16,46 @@ Array.from(forkBtn).forEach((el)=>{
 
 async function deleteRecipe() {
     const recipeId = this.parentNode.dataset.id
-    const username = document.querySelector('h1').getAttribute(`username`)
-    // const owner = document.querySelector('h1').getAttribute(`username`)
-    console.log(username)
+    const username = document.querySelector('h1').getAttribute('data-user')
     try{
-        const response = await fetch(`${username}/deleteRecipe`, {
+        const response = await fetch(`/${username}/deleteRecipe`, {
             method: 'delete',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
-                'recipeId': recipeId
+                'recipeId': recipeId,
+                'username': username
             })
         })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
+        window.location.replace(`/null`);
     } catch(err) {
         console.log(err)
     }
 }
 
-async function forkRecipe() {
-    const recipeId = this.parentNode.dataset.id
-    const username = document.querySelector('h1').getAttribute(`username`)
-    try{
-        const response = await fetch(`/${username}/forkRecipe`, {
-            method: 'post',
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({
-                'recipeId': recipeId,
-            })
-        })
-        // const data = await response.json()
-        // console.log(data)
-        // location.reload()
-    } catch(err) {
-        console.log(err)
-    }
-}
+// async function forkRecipe() {
+//     const recipeId = this.parentNode.dataset.id
+//     const username = document.querySelector('h1').getAttribute(`username`)
+//     try{
+//         const response = await fetch(`/${username}/forkRecipe`, {
+//             method: 'post',
+//             headers: {'Content-type': 'application/json'},
+//             body: JSON.stringify({
+//                 'recipeId': recipeId,
+//             })
+//         })
+//         // const data = await response.json()
+//         // console.log(data)
+//         // location.reload()
+//     } catch(err) {
+//         console.log(err)
+//     }
+// }
 
 async function modifyRecipe() {
     const recipeId = this.parentNode.dataset.id
     const username = document.querySelector('h1').getAttribute(`username`)
     try {
-        const response = await fetch(`${username}/modifyRecipe`, {
+        const response = await fetch(`/${username}/modifyRecipe`, {
             method: 'put',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({

@@ -5,14 +5,15 @@ module.exports = {
     getRecipes: async (req, res) => {
         try{
             let usernamePage = req.baseUrl.slice(1,)
+            console.log(`req.baseUrl: ${req.baseURL}`)
             let userForDisplay = await User.findOne({username: usernamePage})
             if (!userForDisplay) userForDisplay = req.user
             userForDisplay = {
                 username: userForDisplay.username, 
                 _id: userForDisplay._id
             }
-            console.log(userForDisplay)
-            if (/*req.user*/ userForDisplay) {
+            // console.log(userForDisplay)
+            if (userForDisplay) {
                 const recipes = await Recipe.find({userId: userForDisplay._id})
                 res.render('dashboard.ejs', {recipes: recipes, user: req.user, usernamePage: userForDisplay.username})
             } else {
@@ -77,10 +78,12 @@ module.exports = {
         }
     },
     deleteRecipe: async (req, res) => {
+        console.log('DELETING')
+        console.log(req.body.username)
         try {
             await Recipe.findOneAndDelete({_id:req.body.recipeId})
             console.log('Deleted Recipe')
-            res.json('Deleted It')
+            res.redirect(204, `/${req.body.username}`)
         } catch(err) {
             console.log(err)
         }
