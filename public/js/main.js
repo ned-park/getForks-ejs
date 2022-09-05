@@ -35,8 +35,28 @@ async function deleteRecipe() {
     }
 }
 
+async function forkRecipe() {
+    const recipeId = this.parentNode.dataset.id
+    const username = document.querySelector('h1').getAttribute(`username`)
+    try{
+        const response = await fetch(`/${username}/forkRecipe`, {
+            method: 'post',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({
+                'recipeId': recipeId,
+            })
+        })
+        // const data = await response.json()
+        // console.log(data)
+        // location.reload()
+    } catch(err) {
+        console.log(err)
+    }
+}
+
 async function modifyRecipe() {
     const recipeId = this.parentNode.dataset.id
+    const username = document.querySelector('h1').getAttribute(`username`)
     try {
         const response = await fetch(`${username}/modifyRecipe`, {
             method: 'put',

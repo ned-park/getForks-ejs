@@ -7,6 +7,8 @@ router.get('/', dashboardController.getRecipes)
 
 router.post('/createRecipe', ensureAuth, dashboardController.createRecipe)
 
+router.post('/forkRecipe', ensureAuth, dashboardController.forkRecipe)
+
 router.put('/modifyRecipe', ensureAuth, dashboardController.modifyRecipe)
 
 router.delete('/deleteRecipe', ensureAuth, dashboardController.deleteRecipe)

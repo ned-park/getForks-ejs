@@ -11,7 +11,7 @@
     <%- include('partials/header') -%>
     <h2><a href="."><%=usernamePage%></a></h2>
     <h1 class="center"><%=recipe.title%></h1>
-        <div class="content-container recipe-body shadow">
+        <section class="content-container recipe-body shadow" data-id="<%=recipe._id%>">
             <% if (recipe.description.length > 0)%>
                 <p><%=recipe.description%></p>
             <p><%=recipe.ingredients%></p>
@@ -21,9 +21,13 @@
                 <span class='del'>Delete</span>
                 <span class='edit'>Edit</span>
             <% } else { %>
-                <span class='fork'>Fork</span>
+                <form action="/<%=usernamePage%>/forkRecipe" method="POST">
+                    <input type="submit" value="Fork">
+                    <input type="hidden" name="recipeId" value="<%=recipe._id%>">
+                </form>
+                <!-- <span class='fork'>Fork</span> -->
             <% } %>
-        </div>
+        </section>
     <!-- Make edit into modal possibly a drop-in partial view for it to avoid wet code? -->
     <!-- <div class="form flex col">
         <h2></h2>

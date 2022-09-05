@@ -6,6 +6,7 @@ module.exports = {
         try{
             let usernamePage = req.baseUrl.slice(1,)
             let userForDisplay = await User.findOne({username: usernamePage})
+            if (!userForDisplay) userForDisplay = req.user
             userForDisplay = {
                 username: userForDisplay.username, 
                 _id: userForDisplay._id
@@ -39,6 +40,27 @@ module.exports = {
             })
             console.log('Recipe has been added!')
             res.redirect(`/${req.user.username}`)
+        } catch(err) {
+            console.log(err)
+        }
+    },
+    forkRecipe: async (req, res) => {
+        let recipe = await Recipe.findOne({_id: req.body.recipeId})
+        delete recipe._id
+        console.log(console.log(req.user))
+        try {
+            let newRecipe = await Recipe.create({
+                title: recipe.title,
+                description: recipe.description,
+                instructions: recipe.instructions,
+                ingredients: recipe.ingredients,
+                userId: req.user.id,
+                forkedFrom: {user: recipe.userId, recipe: req.body.recipeId},
+            })
+            console.log('Recipe has been added!')
+
+            res.redirect(`/${req.user.username}/${newRecipe._id}`)
+            // res.redirect('/')
         } catch(err) {
             console.log(err)
         }

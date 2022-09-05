@@ -23,7 +23,7 @@ const RecipeSchema = new mongoose.Schema({
     required: true
   },
   forkedFrom: {
-    type: String,
+    type: Object,
     required: false
   },
   branches: {
