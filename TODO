@@ -2,17 +2,16 @@ Style pages
   Header
   Footer partial?
   Forms
+  Create modal
+
 Database Schema for recipes/repositories + userhomepage?
   add category vs tags
   branching...
 
-
-Create recipes
 Modify recipes (add/commit??, ensure authentication)
-Delete recipes (ensure logged in)
 Get recipes + 
 Get recipe (single page display)
-Fork recipes from other users (ensure logged in, else redirect to login page)
+Fork recipes -> limit to single fork per user
 
 Search functionalities
   by user
@@ -25,4 +24,3 @@ Search functionalities
 
 Markdown + instruction/ingredient formatting? + preview
 
-Finish making TODO
