@@ -45,8 +45,8 @@ app.use(flash())
 app.use(removeTrailingSlash)
   
 app.use('/', mainRoutes)
-app.use('/:user', dashboardRoutes)
 app.use('/about', aboutRoutes)
+app.use('/:user', dashboardRoutes)
  
 app.listen(process.env.PORT, ()=>{
     console.log(`Server is running on port: ${process.env.PORT}`)

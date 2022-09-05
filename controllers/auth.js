@@ -59,7 +59,8 @@ const User = require('../models/User')
     if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' })
     if (!validator.isLength(req.body.password, { min: 8 })) validationErrors.push({ msg: 'Password must be at least 8 characters long' })
     if (req.body.password !== req.body.confirmPassword) validationErrors.push({ msg: 'Passwords do not match' })
-  
+    if (req.body.username === 'about') validationErrors.push({msg: `Invalid username`})
+
     if (validationErrors.length) {
       req.flash('errors', validationErrors)
       return res.redirect('../signup')

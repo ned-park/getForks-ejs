@@ -22,10 +22,11 @@ module.exports = {
         }
     },
     getRecipe: async (req, res) => {
-        console.log(req.params.recipeId)
+        let usernamePage = req.baseUrl.slice(1,)
+        // console.log(req.params.recipeId)
         const recipe = await Recipe.findById(req.params.recipeId)
         // console.log(recipe)
-        res.render('recipe.ejs', {user: req.user, recipe: recipe})
+        res.render('recipe.ejs', {user: req.user, recipe: recipe, usernamePage: usernamePage})
     },
     createRecipe: async (req, res) => {
         try {

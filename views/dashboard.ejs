@@ -11,7 +11,7 @@
     <%- include('partials/header') -%>
     <% console.log(user) %>
     <article class="content-container">
-        <h1 username="<%=usernamePage%>"><% if (user.username === usernamePage) {%>Welcome <% } %><%= usernamePage %>,</h1>
+        <h1 username="<%=usernamePage%>"><% if (user != null && user.username === usernamePage) {%>Welcome <% } %><%= usernamePage %></h1>
         <section>
         <% recipes.forEach( el => { %>
             <article class='recipeItem shadow' data-id='<%=el._id%>'>
@@ -19,9 +19,9 @@
                     <h3 class="center"><%=el.title%></h3>
                 </a>
                 <% if (el.description.length > 0) { %>
-                    <p><%=el.description.slice(0,255) + '...'%></p>
+                    <p><%=el.description.slice(0,128) + '...'%></p>
                 <% } %>
-                <!-- <% if (user.username === usernamePage) {%><span class='del'> Delete </span><% } %> -->
+                <% if (user != null && user.username === usernamePage) {%><span class='del'>Delete </span><span class='edit'>Edit</span><% } %>
             </article>
         <% }) %>    
         </section>

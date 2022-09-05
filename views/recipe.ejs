@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>recipeFork - <%=user.username%>/<%=recipe.title%></title>
+    <title>recipeFork - <%=usernamePage%>/<%=recipe.title%></title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <%- include('partials/header') -%>
-    <h2></h2>
+    <h2><a href="."><%=usernamePage%></a></h2>
     <h1 class="center"><%=recipe.title%></h1>
         <div class="content-container recipe-body shadow">
             <% if (recipe.description.length > 0)%>
@@ -17,7 +17,12 @@
             <p><%=recipe.ingredients%></p>
             <p><%=recipe.instructions%></p>
             <p><%=recipe._id%></p>
-            <span class='del'> Delete </span>
+            <% if (user != null && user.username === usernamePage) {%>
+                <span class='del'>Delete</span>
+                <span class='edit'>Edit</span>
+            <% } else { %>
+                <span class='fork'>Fork</span>
+            <% } %>
         </div>
     <!-- Make edit into modal possibly a drop-in partial view for it to avoid wet code? -->
     <!-- <div class="form flex col">

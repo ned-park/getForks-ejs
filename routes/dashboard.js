@@ -3,13 +3,13 @@ const router = express.Router()
 const dashboardController = require('../controllers/dashboard') 
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
 
-router.get('/', ensureAuth, dashboardController.getRecipes)
+router.get('/', dashboardController.getRecipes)
 
-router.post('/createRecipe', dashboardController.createRecipe)
+router.post('/createRecipe', ensureAuth, dashboardController.createRecipe)
 
-router.put('/modifyRecipe', dashboardController.modifyRecipe)
+router.put('/modifyRecipe', ensureAuth, dashboardController.modifyRecipe)
 
-router.delete('/deleteRecipe', dashboardController.deleteRecipe)
+router.delete('/deleteRecipe', ensureAuth, dashboardController.deleteRecipe)
 
 router.get('/:recipeId', dashboardController.getRecipe)
 
