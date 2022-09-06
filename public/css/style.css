@@ -157,7 +157,7 @@ ul {
     cursor: pointer;
   }
 
-  input[type=submit] {
+  input[type=submit].fork {
     background: #eee8d5;
     border: none;
     padding: 0;
