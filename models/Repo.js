@@ -43,7 +43,11 @@ const RepoSchema = new mongoose.Schema({
     ref: 'Repo',
     required: false
   },  
-
+  display: {
+    type: Boolean,
+    default: true,
+    required: false
+  }
 })
 
 module.exports = mongoose.model('Repo', RepoSchema)

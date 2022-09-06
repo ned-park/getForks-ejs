@@ -5,22 +5,21 @@ const User = require('../models/User')
 module.exports = {
     getUser: async (req, res) => {
         try{
-            let usernamePage = req.baseUrl.slice(1,) || req.user
-            
-            console.log({usernamePage})
-            let userForDisplay = await User.findOne({username: usernamePage})
-            console.log({userForDisplay})
-            if (!userForDisplay) userForDisplay = req.user
-            userForDisplay = {
-                username: userForDisplay.username, 
-                _id: userForDisplay._id
+            let landedAtUser = req.baseUrl.slice(1,) || req.user
+            let userToDisplay = await User.findOne({username: landedAtUser})
+
+            // Make sure there is a user, and strip the password and email from the document
+            if (!userToDisplay) userToDisplay = req.user
+            userToDisplay = {
+                username: userToDisplay.username, 
+                _id: userToDisplay._id || userToDisplay.id
             }
-            console.log(userForDisplay)
-            if (userForDisplay) {
-                const recipes = await Recipe.find({userId: userForDisplay._id})
-                res.render('dashboard.ejs', {recipes: recipes, user: req.user, usernamePage: userForDisplay.username})
+
+            if (userToDisplay) {
+                const repos = await Repo.find({userId: userToDisplay._id})
+                res.render('dashboard.ejs', {repos: repos, user: req.user, usernamePage: userToDisplay.username})
             } else {
-                res.render('dashboard.ejs', {user: null, usernamePage: usernamePage})
+                res.render('dashboard.ejs', {user: null, usernamePage: landedAtUser})
             }
         } catch(err) {
             console.log(err)
@@ -28,16 +27,17 @@ module.exports = {
     },
     getRecipe: async (req, res) => { // change this to get Repo, then make client-side fetch for versions vs render server side on latest or client version?
         let usernamePage = req.baseUrl.slice(1,)
-        // console.log(req.params.recipeId)
+        console.log(req.params.recipeId)
         const recipe = await Recipe.findById(req.params.recipeId)
-        // console.log(recipe)
+        console.log(recipe)
         res.render('recipe.ejs', {user: req.user, recipe: recipe, usernamePage: usernamePage})
     },
     createRepoFromRecipe: async (req, res) => {
         try {
             const user = await User.findById(req.user.id)
-
+            console.log('user found')
             const newRecipe = new Recipe({
+                title: req.body.title,
                 notes: req.body.notes || '',
                 instructions: [req.body.instructions], 
                 ingredients: [req.body.ingredients], 
@@ -45,17 +45,18 @@ module.exports = {
             })
 
             const savedRecipe = await newRecipe.save()
-
+            console.log('recipe saved')
             const newRepo = new Repo({
                 title: req.body.title,
                 description: req.body.description,
                 userId: req.user.id,
                 versions: [savedRecipe._id],
-                tags: req.body.tags.length > 0? [req.body.tags.split(' ')] : [],
+                tags: req.body.tags.length > 0? req.body.tags.split(' ') : [],
                 // branches: [],
                 // forkedFrom: RepoId
             })
             const savedRepo = await newRepo.save()
+            console.log('repo saved')
 
             user.repos = user.repos.concat(savedRepo._id)
             await user.save()
