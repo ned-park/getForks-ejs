@@ -5,7 +5,7 @@ const { ensureAuth, ensureGuest } = require('../middleware/auth')
 
 router.get('/', dashboardController.getUser)
 
-router.post('/createRecipe', ensureAuth, dashboardController.createRecipe)
+router.post('/createRecipe', ensureAuth, dashboardController.createRepoFromRecipe)
 
 router.post('/forkRecipe', ensureAuth, dashboardController.forkRecipe)
 

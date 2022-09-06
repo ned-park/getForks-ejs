@@ -36,8 +36,10 @@
             <form action="/<%=usernamePage%>/createRecipe" method='POST' class="flex col">
                 <input type="text" name="title" placeholder="Recipe Title">
                 <input type="text" placeholder="Description (optional)" name='description'>
+                <input type="text" placeholder="Notes (optional)" name='notes'>
                 <input type="text" placeholder="Ingredients" name='ingredients'>
                 <input type="text" placeholder="Instructions" name='instructions'>
+                <input type="text" placeholder="Space separated tags" name='tags'>
                 <input type="submit" value="Create Recipe">
             </form>
         </section>

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const RecipeSchema = new mongoose.Schema({
-  description: {
+  notes: {
     type: String,
     required: false,
     default: ''
@@ -14,16 +14,11 @@ const RecipeSchema = new mongoose.Schema({
     type: [String],
     required: true
   }, 
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  forkedFrom: {
+  userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    required: false
+    required: true
   },
-
 })
 
 module.exports = mongoose.model('Recipe', RecipeSchema)

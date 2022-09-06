@@ -8,8 +8,6 @@ module.exports = {
             let usernamePage = req.baseUrl.slice(1,) || req.user
             
             console.log({usernamePage})
-            // console.log(`req.user ${req.user}`)
-            // console.log(`req.baseUrl: ${req.baseURL}`)
             let userForDisplay = await User.findOne({username: usernamePage})
             console.log({userForDisplay})
             if (!userForDisplay) userForDisplay = req.user
@@ -28,22 +26,40 @@ module.exports = {
             console.log(err)
         }
     },
-    getRecipe: async (req, res) => {
+    getRecipe: async (req, res) => { // change this to get Repo, then make client-side fetch for versions vs render server side on latest or client version?
         let usernamePage = req.baseUrl.slice(1,)
         // console.log(req.params.recipeId)
         const recipe = await Recipe.findById(req.params.recipeId)
         // console.log(recipe)
         res.render('recipe.ejs', {user: req.user, recipe: recipe, usernamePage: usernamePage})
     },
-    createRecipe: async (req, res) => {
+    createRepoFromRecipe: async (req, res) => {
         try {
-            await Recipe.create({
-                title: req.body.title,
-                description: req.body.description || '',
+            const user = await User.findById(req.user.id)
+
+            const newRecipe = new Recipe({
+                notes: req.body.notes || '',
                 instructions: [req.body.instructions], 
                 ingredients: [req.body.ingredients], 
                 userId: req.user.id
             })
+
+            const savedRecipe = await newRecipe.save()
+
+            const newRepo = new Repo({
+                title: req.body.title,
+                description: req.body.description,
+                userId: req.user.id,
+                versions: [savedRecipe._id],
+                tags: req.body.tags.length > 0? [req.body.tags.split(' ')] : [],
+                // branches: [],
+                // forkedFrom: RepoId
+            })
+            const savedRepo = await newRepo.save()
+
+            user.repos = user.repos.concat(savedRepo._id)
+            await user.save()
+
             console.log('Recipe has been added!')
             res.redirect(`/${req.user.username}`)
         } catch(err) {

@@ -6,7 +6,7 @@ const RepoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  version: {
+  latest: {
     type: Number,
     required: true,
     default: 0
@@ -16,7 +16,7 @@ const RepoSchema = new mongoose.Schema({
     required: false,
     default: '',
   },
-  user: {
+  userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
@@ -37,7 +37,12 @@ const RepoSchema = new mongoose.Schema({
       }
     ],
     required: false,
-  }  
+  },
+  forkedFrom: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Repo',
+    required: false
+  },  
 
 })
 
