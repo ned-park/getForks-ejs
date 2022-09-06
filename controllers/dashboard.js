@@ -1,27 +1,28 @@
 const Recipe = require('../models/Recipe')
+const Repo = require('../models/Repo')
 const User = require('../models/User')
 
 module.exports = {
-    getRecipes: async (req, res) => {
+    getUser: async (req, res) => {
         try{
             let usernamePage = req.baseUrl.slice(1,) || req.user
-            // console.log({usernamePage})
+            
+            console.log({usernamePage})
             // console.log(`req.user ${req.user}`)
             // console.log(`req.baseUrl: ${req.baseURL}`)
             let userForDisplay = await User.findOne({username: usernamePage})
+            console.log({userForDisplay})
             if (!userForDisplay) userForDisplay = req.user
             userForDisplay = {
                 username: userForDisplay.username, 
                 _id: userForDisplay._id
             }
-            // console.log(userForDisplay)
+            console.log(userForDisplay)
             if (userForDisplay) {
                 const recipes = await Recipe.find({userId: userForDisplay._id})
                 res.render('dashboard.ejs', {recipes: recipes, user: req.user, usernamePage: userForDisplay.username})
             } else {
-                // res.render('dashboard.ejs', {user: null, usernamePage: usernamePage})
-                res.render('about.ejs', {user: null, usernamePage: usernamePage})
-
+                res.render('dashboard.ejs', {user: null, usernamePage: usernamePage})
             }
         } catch(err) {
             console.log(err)
@@ -39,8 +40,8 @@ module.exports = {
             await Recipe.create({
                 title: req.body.title,
                 description: req.body.description || '',
-                instructions: req.body.instructions, 
-                ingredients:req.body.ingredients, 
+                instructions: [req.body.instructions], 
+                ingredients: [req.body.ingredients], 
                 userId: req.user.id
             })
             console.log('Recipe has been added!')
@@ -72,8 +73,12 @@ module.exports = {
     },
     modifyRecipe: async (req, res) => {
         try {
-            await Recipe.findOneAndUpdate({_id:req.body.recipeId}, {
-                // completed: true
+            let currentRecipe = Recipe.findOne({_id: req.body.recipeId})
+            let newRecipe = {
+
+            }
+            await Recipe.findOneAndUpdate({_id: req.body.recipeId}, {
+                description: req.body.description
             })
             console.log('Recipe updated')
             res.json('Recipe updated')

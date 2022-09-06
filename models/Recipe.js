@@ -1,35 +1,29 @@
 const mongoose = require('mongoose')
 
 const RecipeSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
   description: {
     type: String,
     required: false,
-    default: '',
+    default: ''
   },
   ingredients: {
-    type: [Object],
-    required: true,
+    type: [String],
+    required: true
   },
   instructions: {
     type: [String],
     required: true
   }, 
-  userId: {
-    type: String,
-    required: true
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   },
   forkedFrom: {
-    type: Object,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
     required: false
   },
-  branches: {
-    type: Object,
-    required: false
-  }  
+
 })
 
 module.exports = mongoose.model('Recipe', RecipeSchema)
