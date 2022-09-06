@@ -12,13 +12,8 @@
     <h2><a href="."><%=usernamePage%></a></h2>
     <h1 class="center" username="<%=usernamePage%>" data-username="<%=usernamePage%>"><%=recipe.title%></h1>
         <section class="content-container recipe-body shadow" data-id="<%=recipe._id%>" data-username="<%=usernamePage%>">
-            <% if (recipe.description.length > 0)%>
-                <p><%=recipe.description%></p>
-            <p><%=recipe.ingredients%></p>
-            <p><%=recipe.instructions%></p>
-            <p><%=recipe._id%></p>
             <% if (user != null && user.username === usernamePage) {%>
-                <span class='del' >Delete</span>
+                <span class='del makeBig' >&Chi;</span>
                 <span class='edit'>Edit</span>
             <% } else { %>
                 <form action="/<%=usernamePage%>/forkRecipe" method="POST">
@@ -27,6 +22,11 @@
                 </form>
                 <!-- <span class='fork'>Fork</span> -->
             <% } %>
+            <% if (recipe.description.length > 0)%>
+                <p><%=recipe.description%></p>
+            <p><%=recipe.ingredients%></p>
+            <p><%=recipe.instructions%></p>
+            <p><%=recipe._id%></p>
         </section>
     <!-- Make edit into modal possibly a drop-in partial view for it to avoid wet code? -->
     <!-- <div class="form flex col">

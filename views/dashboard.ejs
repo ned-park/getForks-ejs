@@ -9,20 +9,21 @@
 </head>
 <body>
     <%- include('partials/header') -%>
-    <% console.log(user) %>
     <article class="content-container">
+        <span id="openModal" class="makeBig">&plus;</span>
         <h1 username="<%=usernamePage%>"><% if (user != null && user.username === usernamePage) {%>Welcome <% } %><%= usernamePage %></h1>
-        <button id="openModal">Create Modal</button>
+        
         <section>
         <% recipes.forEach( el => { %>
             <article class='recipeItem shadow' data-id='<%=el._id%>'>
+                <% if (user != null && user.username === usernamePage) {%><span class='del makeBig'>&Chi; </span><span class='edit'>Edit</span><% } %>
                 <a href="<%=usernamePage%>/<%=el._id%>">
                     <h3 class="center"><%=el.title%></h3>
                 </a>
                 <% if (el.description.length > 0) { %>
                     <p><%=el.description.slice(0,128) + '...'%></p>
                 <% } %>
-                <% if (user != null && user.username === usernamePage) {%><span class='del'>Delete </span><span class='edit'>Edit</span><% } %>
+                
             </article>
         <% }) %>    
         </section>
