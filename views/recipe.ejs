@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>recipeFork - <%=usernamePage%>/<%=recipe.title%></title>
+    <title>getForked - <%=usernamePage%>/<%=recipe.title%></title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -22,11 +23,11 @@
                 <!-- <span class='fork'>Fork</span> -->
             <% } %>
             <h1 class="center" username="<%=usernamePage%>" data-username="<%=usernamePage%>"><%=recipe.title%></h1>
-            <% if (recipe.description.length > 0)%>
-                <p><%=recipe.description%></p>
-            <p><%=recipe.ingredients%></p>
-            <p><%=recipe.instructions%></p>
-            <p><%=recipe._id%></p>
+            <% if (recipe.notes.length > 0)%>
+                <p>Notes: <%=recipe.notes%></p>
+            <p>Ingredients: <%=recipe.ingredients%></p>
+            <p>Instructions: <%=recipe.instructions%></p>
+            <p>Id: <%=recipe._id%></p>
         </section>
     <!-- Make edit into modal possibly a drop-in partial view for it to avoid wet code? -->
     <!-- <div class="form flex col">

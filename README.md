@@ -1,10 +1,10 @@
 # Introduction
 
-recipeFork is a new way of managing, sharing, updating, and creating recipes that brings the power and convenience of version control to recipe development.
+getForked is a new way of managing, sharing, updating, and creating recipes that brings the power and convenience of version control to recipe development.
 
 Since recipes are (generally) far simpler than software, much of the usual headaches from version control are absent, while the advantages remain.
 
-recipeFork is still in early development, when there's something users can interact with you'll find a photo of it and a link to the live project here.
+getForked is still in early development, when there's something users can interact with you'll find a photo of it and a link to the live project here.
 
 
 ---

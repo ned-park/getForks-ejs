@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>recipeFork - Dashboard</title>
+    <title>getForked - Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -14,16 +15,16 @@
         <h1 username="<%=usernamePage%>"><% if (user != null && user.username === usernamePage) {%>Welcome <% } %><%= usernamePage %></h1>
         
         <section>
-        <% recipes.forEach( el => { %>
-            <article class='recipeItem shadow' data-id='<%=el._id%>'>
+        <% repos.filter(repo => repo.display).forEach( repo => { %> 
+            <article class='recipeItem shadow' data-id='<%=repo._id%>'>
                 <% if (user != null && user.username === usernamePage) {%><span class='del makeBig'>&times; </span><span class='edit makeBig'>&isin;</span><% } %>
-                <a href="<%=usernamePage%>/<%=el._id%>">
-                    <h3 class="center"><%=el.title%></h3>
+                <a href="<%=usernamePage%>/<%=repo.versions[repo.versions.length-1]%>">
+                    <h3 class="center"><%=repo.title%></h3>
                 </a>
-                <% if (el.description.length > 0) { %>
-                    <p><%=el.description.slice(0,128) + '...'%></p>
+                <% if (repo.description.length > 0) { %>
+                    <p><%=repo.description.slice(0,128) + '...'%></p>
                 <% } %>
-                
+                 <p><%=repo%></p>
             </article>
         <% }) %>    
         </section>
@@ -35,8 +36,10 @@
             <form action="/<%=usernamePage%>/createRecipe" method='POST' class="flex col">
                 <input type="text" name="title" placeholder="Recipe Title">
                 <input type="text" placeholder="Description (optional)" name='description'>
+                <input type="text" placeholder="Notes (optional)" name='notes'>
                 <input type="text" placeholder="Ingredients" name='ingredients'>
                 <input type="text" placeholder="Instructions" name='instructions'>
+                <input type="text" placeholder="Space separated tags" name='tags'>
                 <input type="submit" value="Create Recipe">
             </form>
         </section>

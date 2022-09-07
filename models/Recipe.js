@@ -5,31 +5,24 @@ const RecipeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  description: {
+  notes: {
     type: String,
     required: false,
-    default: '',
+    default: ''
   },
   ingredients: {
-    type: [Object],
-    required: true,
+    type: [String],
+    required: true
   },
   instructions: {
     type: [String],
     required: true
   }, 
   userId: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
     required: true
   },
-  forkedFrom: {
-    type: Object,
-    required: false
-  },
-  branches: {
-    type: Object,
-    required: false
-  }  
 })
 
 module.exports = mongoose.model('Recipe', RecipeSchema)
