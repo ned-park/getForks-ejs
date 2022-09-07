@@ -68,6 +68,10 @@ module.exports = {
         }
     },
     forkRecipe: async (req, res) => {
+        // get original repo? and copy everything vs copy current..
+        // get the current recipe, update the userId and add a forked from pointing to the original repo
+        // 
+
         let recipe = await Recipe.findOne({_id: req.body.recipeId})
         delete recipe._id
         console.log(console.log(req.user))

@@ -24,10 +24,10 @@
             <% } %>
             <h1 class="center" username="<%=usernamePage%>" data-username="<%=usernamePage%>"><%=recipe.title%></h1>
             <% if (recipe.notes.length > 0)%>
-                <p><%=recipe.notes%></p>
-            <p><%=recipe.ingredients%></p>
-            <p><%=recipe.instructions%></p>
-            <p><%=recipe._id%></p>
+                <p>Notes: <%=recipe.notes%></p>
+            <p>Ingredients: <%=recipe.ingredients%></p>
+            <p>Instructions: <%=recipe.instructions%></p>
+            <p>Id: <%=recipe._id%></p>
         </section>
     <!-- Make edit into modal possibly a drop-in partial view for it to avoid wet code? -->
     <!-- <div class="form flex col">
