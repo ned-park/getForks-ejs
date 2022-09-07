@@ -13,6 +13,8 @@ router.put('/modifyRecipe', ensureAuth, dashboardController.modifyRecipe)
 
 router.delete('/deleteRecipe', ensureAuth, dashboardController.deleteRecipe)
 
-router.get('/:recipeId', dashboardController.getRecipe)
+// router.get('/:recipeId', dashboardController.getRecipe)
+
+router.get('/:repoId', dashboardController.getRepo)
 
 module.exports = router

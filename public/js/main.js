@@ -5,8 +5,8 @@ const modal = document.querySelector(".modal");
 const modalBtn = document.querySelector("#openModal");
 const modalClose = document.querySelector(".close")
 
-modalBtn.addEventListener('click', () => openModal(modal))
-modalClose.addEventListener('click', closeModal)
+if (modalBtn) modalBtn.addEventListener('click', () => openModal(modal))
+if (modalClose) modalClose.addEventListener('click', closeModal)
 
 
 // Modal Stuff, <<<move me later>>>

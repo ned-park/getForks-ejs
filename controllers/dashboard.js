@@ -27,10 +27,16 @@ module.exports = {
     },
     getRecipe: async (req, res) => { // change this to get Repo, then make client-side fetch for versions vs render server side on latest or client version?
         let usernamePage = req.baseUrl.slice(1,)
-        console.log(req.params.recipeId)
+        // console.log(req.params.recipeId)
         const recipe = await Recipe.findById(req.params.recipeId)
         console.log(recipe)
         res.render('recipe.ejs', {user: req.user, recipe: recipe, usernamePage: usernamePage})
+    },
+    getRepo: async (req, res) => { 
+        let usernamePage = req.baseUrl.slice(1,)
+        // console.log(req.params.repoId)
+        const repo = await Repo.findOne({_id: req.params.repoId}).populate('versions')
+        res.render('repo.ejs', {user: req.user, repo: repo, usernamePage: usernamePage})
     },
     createRepoFromRecipe: async (req, res) => {
         try {

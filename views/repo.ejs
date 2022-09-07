@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>getForked - <%=usernamePage%>/<%=repo.title%></title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <%- include('partials/header') -%>
+    <h2><a href="."><%=usernamePage%></a></h2>
+        <section class="content-container recipe-body shadow" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
+            <% if (user != null && user.username === usernamePage) {%>
+                <span class='del makeBig' >&times;</span>
+                <span class='edit makeBig'>&isin;</span>
+            <% } else { %>
+                <form action="/<%=usernamePage%>/forkRecipe" method="POST">
+                    <input type="submit" value="&Psi;" class="makeBig fork">
+                    <input type="hidden" name="recipeId" value="<%=repo._id%>">
+                </form>
+                <!-- <span class='fork'>Fork</span> -->
+            <% } %>
+            <h1 class="center" username="<%=usernamePage%>" data-username="<%=usernamePage%>"><%=repo.title%></h1>
+            <p><%=repo.description%></p>
+            <p>Notes: <%=repo.versions[repo.versions.length-1].notes%></p>
+            <p>ingred: <%=repo.versions[repo.versions.length-1].ingredients%></p>
+            <p>instr: <%=repo.versions[repo.versions.length-1].instructions%></p>
+
+        </section>
+    <!-- Make edit into modal possibly a drop-in partial view for it to avoid wet code? -->
+    <!-- <div class="form flex col">
+        <h2></h2>
+        <form action="/dashboard/createRecipe" method='POST' class="flex col">
+            <input type="text" name="title" placeholder="Recipe Title">
+            <input type="text" placeholder="Description (optional)" name='description'>
+            <input type="text" placeholder="Ingredients" name='ingredients'>
+            <input type="text" placeholder="Instructions" name='instructions'>
+            <input type="submit" value="Create Recipe">
+        </form>
+    </div> -->
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
