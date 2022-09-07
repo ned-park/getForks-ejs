@@ -7,7 +7,10 @@ router.get('/', dashboardController.getUser)
 
 router.post('/createRecipe', ensureAuth, dashboardController.createRepoFromRecipe)
 
-router.post('/forkRecipe', ensureAuth, dashboardController.forkRecipe)
+// router.post('/forkRecipe', ensureAuth, dashboardController.forkRecipe)
+
+router.post('/forkRepo', ensureAuth, dashboardController.forkRepo)
+
 
 router.put('/modifyRecipe', ensureAuth, dashboardController.modifyRecipe)
 

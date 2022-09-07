@@ -23,6 +23,16 @@ const RecipeSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
+  clonedFrom: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: false
+  },
+  repo: {
+    type: mongoose.Schema.Types.ObjectId,
+    red: 'Repo',
+    required: false
+  }
 })
 
 module.exports = mongoose.model('Recipe', RecipeSchema)

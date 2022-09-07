@@ -16,9 +16,9 @@
                 <span class='del makeBig' >&times;</span>
                 <span class='edit makeBig'>&isin;</span>
             <% } else { %>
-                <form action="/<%=usernamePage%>/forkRecipe" method="POST">
+                <form action="/<%=usernamePage%>/forkRepo" method="POST">
                     <input type="submit" value="&Psi;" class="makeBig fork">
-                    <input type="hidden" name="recipeId" value="<%=repo._id%>">
+                    <input type="hidden" name="repoId" value="<%=repo._id%>">
                 </form>
                 <!-- <span class='fork'>Fork</span> -->
             <% } %>

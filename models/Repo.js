@@ -46,7 +46,7 @@ const RepoSchema = new mongoose.Schema({
   display: {
     type: Boolean,
     default: true,
-    required: false
+    required: true
   }
 })
 
