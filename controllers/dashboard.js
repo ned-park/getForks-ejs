@@ -40,7 +40,6 @@ module.exports = {
     createRepoFromRecipe: async (req, res) => {
         try {
             const user = await User.findById(req.user.id)
-            console.log('user found')
             const newRecipe = new Recipe({
                 title: req.body.title,
                 notes: req.body.notes || '',
@@ -49,34 +48,26 @@ module.exports = {
                 userId: req.user.id
             })
 
-            console.log('recipe saved')
             const newRepo = new Repo({
                 title: req.body.title,
                 description: req.body.description,
                 userId: req.user.id,
                 versions: [newRecipe._id],
                 tags: req.body.tags.length > 0? req.body.tags.split(' ') : [],
-                // branches: [],
-                // forkedFrom: RepoId
             })
             newRecipe.repo = newRepo._id
             const savedRecipe = await newRecipe.save()
             const savedRepo = await newRepo.save()
-            console.log('repo saved')
 
             user.repos = user.repos.concat(savedRepo._id)
             await user.save()
 
-            console.log('Recipe has been added!')
             res.redirect(`/${req.user.username}`)
         } catch(err) {
             console.log(err)
         }
     },
     forkRepo: async (req, res) => {
-        // get original repo? and copy everything vs copy current..
-        // get the current recipe, update the userId and add a forked from pointing to the original repo
-        // 
         try {
             const originalRepo = await Repo.findOne({_id: req.body.repoId}).populate('versions', 'branches')
             const recipes = await Recipe.find({repo: req.body.repoId})
@@ -103,8 +94,7 @@ module.exports = {
                 userId: req.user.id,
                 versions: newVersionsId,
                 tags: [].concat(...originalRepo.tags),
-                // branches: branchClone.map,
-                branches: [], //eventually copy
+                branches: [], //eventually deep copy if branching implemented
                 forkedFrom: originalRepo._id,
                 display: true,
             })
@@ -140,12 +130,15 @@ module.exports = {
         }
     },
     deleteRecipe: async (req, res) => {
-        console.log('DELETING')
-        console.log(req.body.username)
+        if (req.user.username != req.body.username) return res.status(404).json({errors: [{msg: 'You do not have permission to delete this repository'}]})
         try {
-            await Recipe.findOneAndDelete({_id:req.body.recipeId})
-            console.log('Deleted Recipe')
-            res.redirect(204, `/${req.body.username}`)
+            await User.findOneAndUpdate({_id: req.user.id}, {
+                $pull: {repos: req.body.repoId}
+            })
+            await Recipe.deleteMany({repo: req.body.repoId})
+            await Repo.findOneAndDelete({_id:req.body.repoId})
+            console.log('Deleted Repo')
+            res.redirect(204, `/${req.user.username}`)
         } catch(err) {
             console.log(err)
         }

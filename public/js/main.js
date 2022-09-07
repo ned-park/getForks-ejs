@@ -40,14 +40,14 @@ Array.from(forkBtn).forEach((el)=>{
 
 //Client-side API calls
 async function deleteRecipe() {
-    const recipeId = this.parentNode.dataset.id
+    const repoId = this.parentNode.dataset.id
     const username = document.querySelector('h1').getAttribute('data-user')
     try{
         const response = await fetch(`/${username}/deleteRecipe`, {
             method: 'delete',
             headers: {'Content-type': 'application/json', credentials: 'include'},
             body: JSON.stringify({
-                'recipeId': recipeId,
+                'repoId': repoId,
                 'username': username
             })
         })
