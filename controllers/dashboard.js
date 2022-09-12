@@ -113,27 +113,28 @@ module.exports = {
             console.log(err)
         }
     },
-    addRecipe: async (req, res) => {
+    commitRecipe: async (req, res) => {
         try {
+            console.log(`RepoId:`, req.body.repoId)
+
             const currentRepo = Repo.findOne({_id: req.body.repoId})
             const newRecipe = new Recipe({
                 title: req.body.title,
                 notes: req.body.notes,
                 ingredients: [req.body.ingredients],
                 instructions: [req.body.instructions],
-                userid: req.user.id,
+                userId: req.user.id,
                 repo: req.body.repoId
             })
 
             const savedRecipe = await newRecipe.save()
-
-            await Repo.findOneAndUpdate({_id: req.body.recipeId}, {
-                description: req.body.description,
+            await Repo.findOneAndUpdate({_id: req.body.repoId}, {
+                // description: req.body.description,
                 version: currentRepo.version + 1,
-                versions: [...currentRepo.versions, savedRecipe._id]
+                $push: {versions: savedRecipe._id}
             })
             console.log('Recipe updated')
-            res.redirect(`/${req.user.username}/req.body.repoId`)
+            res.redirect(`/${req.user.username}/${req.body.repoId}`)
         } catch(err) {
             console.log(err)
         }

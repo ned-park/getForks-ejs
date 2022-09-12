@@ -22,7 +22,7 @@
                 </form>
                 <!-- <span class='fork'>Fork</span> -->
             <% } %>
-            <h1 class="center" username="<%=usernamePage%>" data-username="<%=usernamePage%>"><%=repo.title%></h1>
+            <h1 class="center" username="<%=user.username%>" data-username="<%=usernamePage%>"><%=repo.versions[repo.versions.length-1].title%></h1>
             <p><%=repo.description%></p>
             <p>Notes: <%=repo.versions[repo.versions.length-1].notes%></p>
             <p>ingred: <%=repo.versions[repo.versions.length-1].ingredients%></p>
@@ -34,12 +34,13 @@
         <section class="content-container modal-content">
             <span class="close">&times;</span>
             <h2 class="center">Update Recipe: <%=repo.title%></h2>
-            <form action="/dashboard/commitRecipe" method='POST' class="flex col">
+            <form action="/<%=usernamePage%>/commitRecipe" method='POST' class="flex col">
+                <input type="text" name="title" placeholder="Recipe Title" value="<%=repo.title%>">
                 <input type="text" placeholder="Notes (optional)" value="<%=repo.versions[repo.versions.length-1].notes%>" name='notes'>
                 <!-- <input type="text" placeholder="" value="<%=repo.description%>" name='description'> -->
                 <input type="text" placeholder="Ingredients" value="<%=repo.versions[repo.versions.length-1].ingredients%>" name='ingredients'>
                 <input type="text" placeholder="Instructions" value="<%=repo.versions[repo.versions.length-1].instructions%>" name='instructions'>
-                <!-- <input type="text" placeholder="<%=repo.tags.join(' ')%>" name='tags'> -->
+                <input type="hidden" name="repoId" value="<%=repo._id%>">
                 <input type="submit" value="Update Recipe">
             </form>
         </section>
