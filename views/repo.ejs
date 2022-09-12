@@ -11,13 +11,12 @@
 <body>
     <%- include('partials/header') -%>
     <h2><a href="."><%=usernamePage%></a></h2>
-    <section class="content-container reverse-row flex" id="version-select">
+    <section class="content-container flex flex-end" id="version-select">
         <label for="version">Choose a version:</label>
-        <h1><%=version%></h1>
         <select name="version" id="version">
             <% for (let i = 0; i < repo.versions.length; i++) { 
-                let selected = ( version == i ) ? "selected" : "";    
-            %>
+                let selected = ( version == i ) ? "selected" : "" 
+                %>
                 <option value="<%=i%>" <%=selected%>><%=i%></option>
             <% } %>
         </select>

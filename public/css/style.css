@@ -32,6 +32,10 @@ h1 {
     flex-flow: row nowrap;
 }
 
+.flex-end {
+    justify-content: flex-end
+}
+
 .col {
     flex-flow: column nowrap;
 }

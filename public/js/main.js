@@ -4,14 +4,21 @@ const forkBtn = document.querySelectorAll('.fork')
 const modal = document.querySelector(".modal");
 const modalBtn = document.querySelector("#openModal");
 const modalClose = document.querySelector(".close")
+const versionSelect = document.querySelector('#version')
+
 
 if (modalBtn) modalBtn.addEventListener('click', () => openModal(modal))
 if (modalClose) modalClose.addEventListener('click', closeModal)
+if (versionSelect) versionSelect.addEventListener('change', changeVersion)
 
 
+function changeVersion() {
+    console.log(window.location)
+    // window.location.replace(`/${username}`);
+    let url = window.location.href.split('?version=')[0]
+    window.location.replace(`${url}?version=${versionSelect.value}`)
+}
 
-
-// Modal Stuff, <<<move me later>>>
 function openModal(modal) {
     console.log('opening modal')
     modal.style.display = "block";
