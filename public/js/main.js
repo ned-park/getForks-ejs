@@ -13,8 +13,6 @@ if (versionSelect) versionSelect.addEventListener('change', changeVersion)
 
 
 function changeVersion() {
-    console.log(window.location)
-    // window.location.replace(`/${username}`);
     let url = window.location.href.split('?version=')[0]
     window.location.replace(`${url}?version=${versionSelect.value}`)
 }
@@ -50,6 +48,7 @@ Array.from(forkBtn).forEach((el)=>{
 //Client-side API calls
 async function deleteRecipe() {
     const repoId = this.parentNode.dataset.id
+    console.log({repoId})
     const username = document.querySelector('h1').getAttribute('data-user')
     try{
         const response = await fetch(`/${username}/deleteRecipe`, {

@@ -34,7 +34,7 @@ module.exports = {
     getRepo: async (req, res) => { 
         let usernamePage = req.baseUrl.slice(1,)
         const repo = await Repo.findOne({_id: req.params.repoId}).populate('versions')
-        console.log(`Version:`, req.query.version || repo.latest)
+        // console.log(`Version:`, req.query.version || repo.latest)
         res.render('repo.ejs', {user: req.user, repo: repo, usernamePage: usernamePage, version: (req.query.version || repo.latest)})
     },
     createRepoFromRecipe: async (req, res) => {
@@ -107,6 +107,12 @@ module.exports = {
             })
             let fulfilled = await Promise.all(promises)
             const savedRepo = await newRepo.save()
+
+            await User.findOneAndUpdate(
+                {_id: req.user.id}, 
+                { $push: {repos: newRepo._id } }
+            )
+
             console.log('Repo was cloned!')
 
             res.redirect(`/${req.user.username}/${savedRepo._id}`)
@@ -144,9 +150,11 @@ module.exports = {
     deleteRecipe: async (req, res) => {
         if (req.user.username != req.body.username) return res.status(404).json({errors: [{msg: 'You do not have permission to delete this repository'}]})
         try {
-            await User.findOneAndUpdate({_id: req.user.id}, {
-                $pull: {repos: req.body.repoId}
-            })
+            await User.findOneAndUpdate(
+                {_id: req.user.id}, 
+                { $pull: { repos: req.body.repoId } },
+                {new: true}
+            )
             await Recipe.deleteMany({repo: req.body.repoId})
             await Repo.findOneAndDelete({_id:req.body.repoId})
             console.log('Deleted Repo')
