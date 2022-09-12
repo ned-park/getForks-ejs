@@ -1,16 +1,8 @@
 style pages
-  Header
   Footer partial?
   Forms
   Improve modal + form
 
-Database Schema for recipes/repositories + userhomepage?
-  add category vs tags
-  branching...
-
-Modify recipes (add + commit to track history, move items into an array??, ensure authentication)
-Get recipes + 
-Get recipe (single page display)
 Fork recipes -> limit to single fork per user
 
 Search functionalities
