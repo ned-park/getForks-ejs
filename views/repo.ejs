@@ -11,6 +11,17 @@
 <body>
     <%- include('partials/header') -%>
     <h2><a href="."><%=usernamePage%></a></h2>
+    <section class="content-container reverse-row flex" id="version-select">
+        <label for="version">Choose a version:</label>
+        <h1><%=version%></h1>
+        <select name="version" id="version">
+            <% for (let i = 0; i < repo.versions.length; i++) { 
+                let selected = ( version == i ) ? "selected" : "";    
+            %>
+                <option value="<%=i%>" <%=selected%>><%=i%></option>
+            <% } %>
+        </select>
+    </section>
         <section class="content-container recipe-body shadow" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
             <% if (user != null && user.username === usernamePage) {%>
                 <span class='del makeBig' >&times;</span>
@@ -22,11 +33,11 @@
                 </form>
                 <!-- <span class='fork'>Fork</span> -->
             <% } %>
-            <h1 class="center" username="<%=user.username%>" data-username="<%=usernamePage%>"><%=repo.versions[repo.versions.length-1].title%></h1>
+            <h1 class="center" username="<%=user.username%>" data-username="<%=usernamePage%>"><%=repo.versions[version].title%></h1>
             <p><%=repo.description%></p>
-            <p>Notes: <%=repo.versions[repo.versions.length-1].notes%></p>
-            <p>ingred: <%=repo.versions[repo.versions.length-1].ingredients%></p>
-            <p>instr: <%=repo.versions[repo.versions.length-1].instructions%></p>
+            <p>Notes: <%=repo.versions[version].notes%></p>
+            <p>ingred: <%=repo.versions[version].ingredients%></p>
+            <p>instr: <%=repo.versions[version].instructions%></p>
 
         </section>
     <!-- Make edit into modal possibly a drop-in partial view for it to avoid wet code? -->
@@ -36,10 +47,10 @@
             <h2 class="center">Update Recipe: <%=repo.title%></h2>
             <form action="/<%=usernamePage%>/commitRecipe" method='POST' class="flex col">
                 <input type="text" name="title" placeholder="Recipe Title" value="<%=repo.title%>">
-                <input type="text" placeholder="Notes (optional)" value="<%=repo.versions[repo.versions.length-1].notes%>" name='notes'>
+                <input type="text" placeholder="Notes (optional)" value="<%=repo.versions[version].notes%>" name='notes'>
                 <!-- <input type="text" placeholder="" value="<%=repo.description%>" name='description'> -->
-                <input type="text" placeholder="Ingredients" value="<%=repo.versions[repo.versions.length-1].ingredients%>" name='ingredients'>
-                <input type="text" placeholder="Instructions" value="<%=repo.versions[repo.versions.length-1].instructions%>" name='instructions'>
+                <input type="text" placeholder="Ingredients" value="<%=repo.versions[version].ingredients%>" name='ingredients'>
+                <input type="text" placeholder="Instructions" value="<%=repo.versions[version].instructions%>" name='instructions'>
                 <input type="hidden" name="repoId" value="<%=repo._id%>">
                 <input type="submit" value="Update Recipe">
             </form>

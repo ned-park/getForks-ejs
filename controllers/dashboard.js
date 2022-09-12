@@ -34,7 +34,8 @@ module.exports = {
     getRepo: async (req, res) => { 
         let usernamePage = req.baseUrl.slice(1,)
         const repo = await Repo.findOne({_id: req.params.repoId}).populate('versions')
-        res.render('repo.ejs', {user: req.user, repo: repo, usernamePage: usernamePage})
+        console.log(`Version:`, req.query.version || repo.latest)
+        res.render('repo.ejs', {user: req.user, repo: repo, usernamePage: usernamePage, version: (req.query.version || repo.latest)})
     },
     createRepoFromRecipe: async (req, res) => {
         try {
@@ -117,7 +118,7 @@ module.exports = {
         try {
             console.log(`RepoId:`, req.body.repoId)
 
-            const currentRepo = Repo.findOne({_id: req.body.repoId})
+            const currentRepo = await Repo.findOne({_id: req.body.repoId})
             const newRecipe = new Recipe({
                 title: req.body.title,
                 notes: req.body.notes,
@@ -127,10 +128,11 @@ module.exports = {
                 repo: req.body.repoId
             })
 
+            // console.log(currentRepo)
             const savedRecipe = await newRecipe.save()
             await Repo.findOneAndUpdate({_id: req.body.repoId}, {
                 // description: req.body.description,
-                version: currentRepo.version + 1,
+                latest: currentRepo.latest + 1,
                 $push: {versions: savedRecipe._id}
             })
             console.log('Recipe updated')
