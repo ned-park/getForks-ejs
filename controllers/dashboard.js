@@ -25,9 +25,8 @@ module.exports = {
             console.log(err)
         }
     },
-    getRecipe: async (req, res) => { // change this to get Repo, then make client-side fetch for versions vs render server side on latest or client version?
+    getRecipe: async (req, res) => { // unused, might be handy
         let usernamePage = req.baseUrl.slice(1,)
-        // console.log(req.params.recipeId)
         const recipe = await Recipe.findById(req.params.recipeId)
         console.log(recipe)
         res.render('recipe.ejs', {user: req.user, recipe: recipe, usernamePage: usernamePage})
@@ -114,17 +113,27 @@ module.exports = {
             console.log(err)
         }
     },
-    modifyRecipe: async (req, res) => {
+    addRecipe: async (req, res) => {
         try {
-            let currentRecipe = Recipe.findOne({_id: req.body.recipeId})
-            let newRecipe = {
+            const currentRepo = Repo.findOne({_id: req.body.repoId})
+            const newRecipe = new Recipe({
+                title: req.body.title,
+                notes: req.body.notes,
+                ingredients: [req.body.ingredients],
+                instructions: [req.body.instructions],
+                userid: req.user.id,
+                repo: req.body.repoId
+            })
 
-            }
-            await Recipe.findOneAndUpdate({_id: req.body.recipeId}, {
-                description: req.body.description
+            const savedRecipe = await newRecipe.save()
+
+            await Repo.findOneAndUpdate({_id: req.body.recipeId}, {
+                description: req.body.description,
+                version: currentRepo.version + 1,
+                versions: [...currentRepo.versions, savedRecipe._id]
             })
             console.log('Recipe updated')
-            res.json('Recipe updated')
+            res.redirect(`/${req.user.username}/req.body.repoId`)
         } catch(err) {
             console.log(err)
         }

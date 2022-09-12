@@ -9,6 +9,8 @@ if (modalBtn) modalBtn.addEventListener('click', () => openModal(modal))
 if (modalClose) modalClose.addEventListener('click', closeModal)
 
 
+
+
 // Modal Stuff, <<<move me later>>>
 function openModal(modal) {
     console.log('opening modal')
@@ -30,7 +32,7 @@ Array.from(deleteBtn).forEach((el)=>{
 })
 
 Array.from(editBtn).forEach((el)=>{
-    el.addEventListener('click', modifyRecipe)
+    el.addEventListener('click', () => openModal(modal))
 })
 
 Array.from(forkBtn).forEach((el)=>{
@@ -57,25 +59,23 @@ async function deleteRecipe() {
     }
 }
 
-async function modifyRecipe() {
-    const recipeId = this.parentNode.dataset.id
-    const username = document.querySelector('h1').getAttribute(`username`)
-    try {
-        const response = await fetch(`/${username}/modifyRecipe`, {
-            method: 'put',
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({
-                'recipeIdFromJSFile': recipeId
-            })
-        })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
-    } catch(err) {
-        console.log(err)
-    }
-}
-
-
-
+// async function addRecipe() {
+//     const repoId = this.parentNode.dataset.id
+//     const username = document.querySelector('h1').getAttribute('data-user')
+//     try {
+//         const response = await fetch(`/${username}/addRecipe`, {
+//             method: 'put',
+//             headers: {'Content-type': 'application/json'},
+//             body: JSON.stringify({
+//                 'repoId': repoId,
+//                 'title': 
+//             })
+//         })
+//         const data = await response.json()
+//         console.log(data)
+//         location.reload()
+//     } catch(err) {
+//         console.log(err)
+//     }
+// }
 

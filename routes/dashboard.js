@@ -12,7 +12,7 @@ router.post('/createRecipe', ensureAuth, dashboardController.createRepoFromRecip
 router.post('/forkRepo', ensureAuth, dashboardController.forkRepo)
 
 
-router.put('/modifyRecipe', ensureAuth, dashboardController.modifyRecipe)
+router.put('/addRecipe', ensureAuth, dashboardController.addRecipe)
 
 router.delete('/deleteRecipe', ensureAuth, dashboardController.deleteRecipe)
 
