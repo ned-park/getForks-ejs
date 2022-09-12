@@ -4,7 +4,7 @@ getForks is a new way of managing, sharing, updating, and creating recipes that 
 
 Since recipes are (generally) far simpler than software, much of the usual headaches from version control are absent, while the advantages remain.
 
-getForks is still in early development, when there's something users can interact with you'll find a photo of it and a link to the live project here.
+getForks is still in very early development, but a testing ground that's still underactive development and may not retain data long-term is available to explore! Visit [https://getforks.herokuapp.com/](https://getforks.herokuapp.com/).
 
 
 ---
