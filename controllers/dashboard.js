@@ -6,18 +6,18 @@ module.exports = {
     getUser: async (req, res) => {
         try{
             let landedAtUser = req.baseUrl.slice(1,) || req.user
-            let userToDisplay = await User.findOne({username: landedAtUser})
+            let userToDisplay = await User.findOne({username: landedAtUser}).populate('repos')
 
             // Make sure there is a user, and strip the password and email from the document
             if (!userToDisplay) return res.status(404).json({errors: [{msg: 'User does not exist'}]})
             userToDisplay = {
                 username: userToDisplay.username, 
-                _id: userToDisplay._id || userToDisplay.id
+                _id: userToDisplay._id || userToDisplay.id,
+                repos: userToDisplay.repos
             }
 
             if (userToDisplay) {
-                const repos = await Repo.find({userId: userToDisplay._id})
-                res.render('dashboard.ejs', {repos: repos, user: req.user, usernamePage: userToDisplay.username})
+                res.render('dashboard.ejs', {repos: userToDisplay.repos, user: req.user, usernamePage: userToDisplay.username})
             } else {
                 res.render('dashboard.ejs', {user: null, usernamePage: landedAtUser})
             }
