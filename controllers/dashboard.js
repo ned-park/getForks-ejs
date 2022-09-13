@@ -33,9 +33,9 @@ module.exports = {
     },
     getRepo: async (req, res) => { 
         let usernamePage = req.baseUrl.slice(1,)
-        const repo = await Repo.findOne({_id: req.params.repoId}).populate('versions')
+        const repo = await Repo.findOne({_id: req.params.repoId}).populate('versions', 'userId')
         // console.log(`Version:`, req.query.version || repo.latest)
-        res.render('repo.ejs', {user: req.user, repo: repo, usernamePage: usernamePage, version: (req.query.version || repo.latest)})
+        res.render('repo.ejs', {user: req.user || null, repo: repo, usernamePage: repo.userId.user, version: (req.query.version || repo.latest)})
     },
     createRepoFromRecipe: async (req, res) => {
         try {
