@@ -25,7 +25,7 @@
             <% if (user != null && user.username === usernamePage) {%>
                 <span class='del makeBig' >&times;</span>
                 <span class='edit makeBig'>&cup;</span>
-            <% } else { %>
+            <% } else if (user != null){ %>
                 <form action="/<%=usernamePage%>/forkRepo" method="POST">
                     <input type="submit" value="&Psi;" class="makeBig fork">
                     <input type="hidden" name="repoId" value="<%=repo._id%>">
