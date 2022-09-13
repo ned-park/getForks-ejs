@@ -32,6 +32,19 @@ h1 {
     flex-flow: row nowrap;
 }
 
+.third-width {
+    max-width: 33.3333%;
+    height: auto;
+}
+
+.gap {
+    gap: 1em;
+}
+.vertical-center {
+    align-items: center;
+}
+
+
 .flex-end {
     justify-content: flex-end
 }
@@ -166,3 +179,7 @@ ul {
     border: none;
     padding: 0;
   }
+
+.margin-top-content {
+    margin-top: 15vh;
+}
