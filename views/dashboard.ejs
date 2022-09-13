@@ -18,7 +18,6 @@
         <% repos.filter(repo => repo.display).forEach( repo => { %> 
             <article class='recipeItem shadow' data-id='<%=repo._id%>'>
                 <% if (user != null && user.username === usernamePage) {%><span class='del makeBig'>&times; </span><span class='edit makeBig'>&isin;</span><% } %>
-                <!-- <a href="<%=usernamePage%>/<%=repo.versions[repo.versions.length-1]%>"> -->
                 <a href="<%=usernamePage%>/<%=repo._id%>">
 
                     <h3 class="center"><%=repo.title%></h3>
@@ -26,7 +25,6 @@
                 <% if (repo.description.length > 0) { %>
                     <p><%=repo.description.slice(0,128) + '...'%></p>
                 <% } %>
-                 <p><%=repo%></p>
             </article>
         <% }) %>    
         </section>
