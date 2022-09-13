@@ -10,13 +10,22 @@
 </head>
 <body>
     <%- include('partials/header') -%>
-    <section class="content-container">
-        <p>The current recipe management leaves something to be desired.  getForks brings
-            the relevant subset of source code version control to the world of food so recipes 
-            can be easily copied, saved, modified, and shared without losing track of where they
-            came from, enabling rapid development and deployment of recipes and variations of similar
-            recipes through branches if desired.
-        </p>
-    </section>
+    <article class="content-container">
+        <!-- <span id="openModal" class="makeBig">&plus;</span> -->
+        <h1>Browsing all recipes</h1>
+        <section>
+        <% repos.filter(repo => repo.display).forEach(repo => { %> 
+            <article class='recipeItem shadow' data-id='<%=repo._id%>'>
+                <a href="<%=repo.userId.username%>/<%=repo._id%>">
+                    <h3 class="center"><%=repo.title%></h3>
+                </a>
+                <% if (repo.description.length > 0) { %>
+                    <p><%=repo.description.slice(0,128) + '...'%></p>
+                <% } %>
+            </article>
+        <% }) %>    
+        </section>
+    </article>
+    <script src="js/main.js"></script>
 </body>
 </html>
