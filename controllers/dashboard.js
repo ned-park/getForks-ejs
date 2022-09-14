@@ -148,7 +148,8 @@ module.exports = {
         }
     },
     deleteRecipe: async (req, res) => {
-        if (req.user.username != req.body.username) return res.status(404).json({errors: [{msg: 'You do not have permission to delete this repository'}]})
+        if (req.user.username != req.body.username) 
+            return res.status(404).json({errors: [{msg: 'You do not have permission to delete this repository'}]})
         try {
             await User.findOneAndUpdate(
                 {_id: req.user.id}, 
