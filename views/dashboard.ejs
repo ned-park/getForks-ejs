@@ -33,13 +33,15 @@
         <section class="content-container modal-content">
             <span class="close">&times;</span>
             <h2 class="center">Add Recipe</h2>
-            <form action="/<%=usernamePage%>/createRecipe" method='POST' class="flex col">
+            <form action="/<%=usernamePage%>/createRecipe" method='POST' enctype="multipart/form-data" class="flex col">
                 <input type="text" name="title" placeholder="Recipe Title">
                 <input type="text" placeholder="Description (optional)" name='description'>
                 <input type="text" placeholder="Notes (optional)" name='notes'>
                 <input type="text" placeholder="Ingredients" name='ingredients'>
                 <input type="text" placeholder="Instructions" name='instructions'>
                 <input type="text" placeholder="Space separated tags" name='tags'>
+                <label for="imgUpload" class="form-label">Image</label>
+                <input type="file" class="form-control" id="imageUpload" name="file">
                 <input type="submit" value="Create Recipe">
             </form>
         </section>

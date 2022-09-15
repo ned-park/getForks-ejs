@@ -16,6 +16,10 @@ const RepoSchema = new mongoose.Schema({
     required: false,
     default: '',
   },
+  cloudinaryId: {
+    type: String,
+    require: false,
+  },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

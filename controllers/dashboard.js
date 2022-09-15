@@ -1,3 +1,4 @@
+const cloudinary = require("../middleware/cloudinary");
 const Recipe = require('../models/Recipe')
 const Repo = require('../models/Repo')
 const User = require('../models/User')
@@ -39,7 +40,9 @@ module.exports = {
     },
     createRepoFromRecipe: async (req, res) => {
         try {
+            console.log(req.file)
             const user = await User.findById(req.user.id)
+            const image = await cloudinary.uploader.upload(req.file.path);
             const newRecipe = new Recipe({
                 title: req.body.title,
                 notes: req.body.notes || '',
@@ -52,6 +55,8 @@ module.exports = {
                 title: req.body.title,
                 description: req.body.description,
                 userId: req.user.id,
+                image: image? image.secure_url: null,
+                cloudinaryId: image? image.public_id : null,
                 versions: [newRecipe._id],
                 tags: req.body.tags.length > 0? req.body.tags.split(' ') : [],
             })
@@ -93,6 +98,7 @@ module.exports = {
                 latest: originalRepo.latest,
                 userId: req.user.id,
                 versions: newVersionsId,
+                cloudinaryId: originalRepo.cloudinaryId,
                 tags: [].concat(...originalRepo.tags),
                 branches: [], //eventually deep copy if branching implemented
                 forkedFrom: originalRepo._id,
