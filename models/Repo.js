@@ -20,6 +20,10 @@ const RepoSchema = new mongoose.Schema({
     type: String,
     require: false,
   },
+  image: {
+    type: String,
+    require: false,
+  },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

@@ -43,6 +43,7 @@ module.exports = {
             console.log(req.file)
             const user = await User.findById(req.user.id)
             const image = await cloudinary.uploader.upload(req.file.path);
+            console.log({image})
             const newRecipe = new Recipe({
                 title: req.body.title,
                 notes: req.body.notes || '',
@@ -99,6 +100,7 @@ module.exports = {
                 userId: req.user.id,
                 versions: newVersionsId,
                 cloudinaryId: originalRepo.cloudinaryId,
+                image: originalRepo.image,
                 tags: [].concat(...originalRepo.tags),
                 branches: [], //eventually deep copy if branching implemented
                 forkedFrom: originalRepo._id,
@@ -158,7 +160,9 @@ module.exports = {
             return res.status(404).json({errors: [{msg: 'You do not have permission to delete this repository'}]})
         try {
             let repo = await Repo.findById({ _id: req.body.id });
-            await cloudinary.uploader.destroy(repo.cloudinaryId);
+            if (repo.cloudinary != null) {
+                await cloudinary.uploader.destroy(repo.cloudinaryId);
+            }
             await User.findOneAndUpdate(
                 {_id: req.user.id}, 
                 { $pull: { repos: req.body.repoId } },

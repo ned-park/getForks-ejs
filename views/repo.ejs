@@ -21,24 +21,40 @@
             <% } %>
         </select>
     </section>
-        <section class="content-container recipe-body shadow" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
-            <% if (user != null && user.username === usernamePage) {%>
-                <span class='del makeBig' >&times;</span>
-                <span class='edit makeBig'>&cup;</span>
-            <% } else if (user != null){ %>
-                <form action="/<%=usernamePage%>/forkRepo" method="POST">
-                    <input type="submit" value="&Psi;" class="makeBig fork">
-                    <input type="hidden" name="repoId" value="<%=repo._id%>">
-                </form>
-                <!-- <span class='fork'>Fork</span> -->
-            <% } %>
-            <h1 class="center" data-username="<%=usernamePage%>"><%=repo.versions[version].title%></h1>
-            <p><%=repo.description%></p>
-            <p>Notes: <%=repo.versions[version].notes%></p>
-            <p>ingred: <%=repo.versions[version].ingredients%></p>
-            <p>instr: <%=repo.versions[version].instructions%></p>
 
-        </section>
+    <section class="content-container recipe-body shadow" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
+        <% if (user != null && user.username === usernamePage) {%>
+            <span class='del makeBig' >&times;</span>
+            <span class='edit makeBig'>&cup;</span>
+        <% } else if (user != null){ %>
+            <form action="/<%=usernamePage%>/forkRepo" method="POST">
+                <input type="submit" value="&Psi;" class="makeBig fork">
+                <input type="hidden" name="repoId" value="<%=repo._id%>">
+            </form>
+            <!-- <span class='fork'>Fork</span> -->
+        <% } %>
+        <h1 class="center" data-username="<%=usernamePage%>"><%=repo.versions[version].title%></h1>
+        
+        <% if (repo.image) {
+            let baseUrl = repo.image.slice(0,49), filename = repo.image.slice(62) 
+        %>
+        <img
+    	sizes="(min-width: 30em) 28em, 100vw"
+    	srcset="<%=baseUrl%>/f_auto,q_70,w_256/<%=filename%> 256w,
+    	        <%=baseUrl%>/f_auto,q_70,w_512/<%=filename%> 512w,
+    	        <%=baseUrl%>/f_auto,q_70,w_768/<%=filename%> 768w,
+    	        <%=baseUrl%>/f_auto,q_70,w_1024/<%=filename%> 1024w,
+    	        <%=baseUrl%>/f_auto,q_70,w_1280/<%=filename%> 1280w"
+    	src="%<=baseUrl%>/f_auto,q_70,w_512/%<=filename%>"
+    	alt="User provided image of recipe" />
+
+        <% } %>
+        <p><%=repo.description%></p>
+        <p>Notes: <%=repo.versions[version].notes%></p>
+        <p>ingred: <%=repo.versions[version].ingredients%></p>
+        <p>instr: <%=repo.versions[version].instructions%></p>
+
+    </section>
     <!-- Make edit into modal possibly a drop-in partial view for it to avoid wet code? -->
     <section class="modal">
         <section class="content-container modal-content">
