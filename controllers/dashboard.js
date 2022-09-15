@@ -157,6 +157,8 @@ module.exports = {
         if (req.user.username != req.body.username) 
             return res.status(404).json({errors: [{msg: 'You do not have permission to delete this repository'}]})
         try {
+            let repo = await Repo.findById({ _id: req.body.id });
+            await cloudinary.uploader.destroy(repo.cloudinaryId);
             await User.findOneAndUpdate(
                 {_id: req.user.id}, 
                 { $pull: { repos: req.body.repoId } },
