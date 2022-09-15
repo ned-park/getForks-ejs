@@ -69,7 +69,7 @@ module.exports = {
     },
     forkRepo: async (req, res) => {
         try {
-            const originalRepo = await Repo.findOne({_id: req.body.repoId}).populate('versions', 'branches')
+            const originalRepo = await Repo.findOne({_id: req.body.repoId}).populate('versions').populate('branches')
             const recipes = await Recipe.find({repo: req.body.repoId})
             console.log(originalRepo.versions)
             console.log(recipes.length)
