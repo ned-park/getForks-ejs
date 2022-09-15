@@ -112,6 +112,12 @@ ul {
     width: 50%;
 }
 
+.content-container img{
+    display: block;
+    margin: auto;
+    max-width: 100%;
+}
+
 .signin {
     margin: 10% auto;
     padding: 2% 0 3% 0;
