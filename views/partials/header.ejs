@@ -1,4 +1,4 @@
-<header class="header flex">
+<header class="header flex vertical-center">
   <a href="/">
     <% if (!user) { %>
       <h1 data-user="null">getForks</h1>
@@ -7,14 +7,20 @@
     <% } %>
   </a>
   <nav>
-      <a href="/" class="headerLink">Home</a>
-      <a href="<%=user? `/${user.username}` : `/login`%>" class="headerLink">myRecipes</a>
-      <a href="/about" class="headerLink">About</a>
+    <input id="menu-toggle" type="checkbox" />
+    <label class='menu-button-container' for="menu-toggle">
+    <div class='menu-button'></div>
+    </label>
+    <ul class="menu">
+      <li><a href="<%=user? `/${user.username}` : `/login`%>" class="headerLink">myRecipes</a></li>
+      <li><a href="/about" class="headerLink">About</a></li>
       <% if (!user) { %>
-        <a href="/login" class="headerLink">Log in</a>
-        <a href="/signup" class="headerLink">Sign up</a>
+      <li><a href="/login" class="headerLink">Log in</a></li>
+      <li><a href="/signup" class="headerLink">Sign up</a></li>
       <% } else { %>
-        <a href="/logout" class="headerLink">Log out</a>
+      <li>  <a href="/logout" class="headerLink">Log out</a></li>
     <% } %>
+    </ul>
   </nav>
 </header>
+
