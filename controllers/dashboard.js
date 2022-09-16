@@ -42,8 +42,8 @@ module.exports = {
         try {
             console.log(req.file)
             const user = await User.findById(req.user.id)
-            const image = await cloudinary.uploader.upload(req.file.path);
-            console.log({image})
+            let image
+            if (req.file) image = await cloudinary.uploader.upload(req.file.path);
             const newRecipe = new Recipe({
                 title: req.body.title,
                 notes: req.body.notes || '',
