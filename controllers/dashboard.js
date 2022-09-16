@@ -156,10 +156,12 @@ module.exports = {
         }
     },
     deleteRecipe: async (req, res) => {
+        console.log(req.body)
+
         if (req.user.username != req.body.username) 
             return res.status(404).json({errors: [{msg: 'You do not have permission to delete this repository'}]})
         try {
-            let repo = await Repo.findById({ _id: req.body.id });
+            let repo = await Repo.findById({ _id: req.body.repoId });
             if (repo.cloudinary != null) {
                 await cloudinary.uploader.destroy(repo.cloudinaryId);
             }
