@@ -11,16 +11,16 @@
     <label class='menu-button-container' for="menu-toggle">
     <div class='menu-button'></div>
     </label>
-    <ul class="menu">
-      <li><a href="<%=user? `/${user.username}` : `/login`%>" class="headerLink">myRecipes</a></li>
-      <li><a href="/about" class="headerLink">About</a></li>
+    <div class="menu">
+      <a href="<%=user? `/${user.username}` : `/login`%>" class="headerLink">myRecipes</a>
+      <a href="/about" class="headerLink">About</a>
       <% if (!user) { %>
-      <li><a href="/login" class="headerLink">Log in</a></li>
-      <li><a href="/signup" class="headerLink">Sign up</a></li>
+      <a href="/login" class="headerLink">Log in</a>
+      <a href="/signup" class="headerLink">Sign up</a>
       <% } else { %>
-      <li>  <a href="/logout" class="headerLink">Log out</a></li>
+      <a href="/logout" class="headerLink">Log out</a>
     <% } %>
-    </ul>
+    </div>
   </nav>
 </header>
 

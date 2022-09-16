@@ -151,6 +151,8 @@ ul {
     float: left;
 }
 
+
+/* Modals*/
 .modal {
     display: none; 
     position: fixed; 
@@ -195,13 +197,11 @@ ul {
 
 
 /*Nav menu*/
-
 nav {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    height: 50px;
     padding: 1em;
   }
   
@@ -213,7 +213,7 @@ nav {
     padding: 0;
   }
   
-  .menu > li {
+  .menu > a {
     margin: 0 1rem;
     overflow: hidden;
   }
@@ -236,7 +236,7 @@ nav {
   .menu-button::before,
   .menu-button::after {
     display: block;
-    background-color: #fff;
+    background-color: #eee8d5;
     position: absolute;
     height: 4px;
     width: 30px;
@@ -282,29 +282,27 @@ nav {
       justify-content: center;
       align-items: center;
     }
-    #menu-toggle ~ .menu li {
+    #menu-toggle ~ .menu a {
       height: 0;
       margin: 0;
       padding: 0;
       border: 0;
       transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
     }
-    #menu-toggle:checked ~ .menu li {
-      border: 1px solid #333;
+    #menu-toggle:checked ~ .menu a {
+      border: 1px solid #268bd2;
       height: 2.5em;
       padding: 0.5em;
       transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
     }
-    .menu > li {
+    .menu > a {
       display: flex;
       justify-content: center;
+      align-items: center;
       margin: 0;
       padding: 0.5em 0;
       width: 100%;
-      color: white;
-      background-color: #222;
-    }
-    .menu > li:not(:last-child) {
-      border-bottom: 1px solid #444;
+      color: #eee8d5;
+      background-color: #073642;
     }
   }
