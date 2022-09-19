@@ -10,28 +10,118 @@
 </head>
 <body  class="bg-white">
     <%- include('partials/header') -%>
-    <h2 class="center">An improved approach to recipe sharing and distribution</h2>
-    <article class="content-container flex col margin-top-content" >
-        <section class="flex vertical-center gap">
-            <p><strong>getForks</strong> was born out of a desire to improve the state of recipe sharing and development on the web.  
+    <section id="hero">
+        <div class="container flex flex-col-reverse items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0 md:flex-row">
+            <div class="flex flex-col mb-32 space-y-12 md:w-1/2">
+            <h1 class="max-w-md text-43xl font-bold text-center md:text-4xl md:text-left">
+                How it started
+            </h1>
+            <p class="max-w-sm text-center text-darkGrayishBlue md:text-justify">
+                <strong>getForks</strong> was born out of a desire to improve the state of recipe sharing and development on the web.  
                 Traditional methods of recipe sharing online leave a lot to be desired.  Comment sections
-                are filled with modifications and derivations.  Lacking a way of maintain recipe history, people
-                modify recipes and lose their history, making it difficult to see how recipes have evolved over 
-                time.  <strong>getForks</strong> makes it easy to find, save, modify and share recipes so your attention stays on 
-                the food.
+                are filled with modifications and derivations and users have no easy way of keeping track of 
+                modifications they've made.  By creating forks, all of your recipes original or modified are found
+                in one easy, searchable place.  
+                </p>
+            </div>
+            <div class="md:w-1/2">
+                <img src="/images/daniela-RELOvb0rrCE-unsplash.jpg" alt="" />
+            </div>
+        </div>
+    </section>
+    <section id="features">
+        <div
+          class="container flex flex-col px-4 mx-auto mt-10 space-y-12 md:space-y-0 md:flex-row"
+        >
+          <div class="flex flex-col space-y-12 md:w-1/2">
+            <h2 class="max-w-md text-4xl font-bold text-center md:text-left">
+              An improved approach to recipe sharing
+            </h2>
+            <p class="max-w-sm text-center text-darkGrayishBlue md:text-justify">
+              <strong>getForks</strong> leverages the power of version control tools used during software development to make creating, sharing, and finding recipes easier.  Those tools are complex, but <strong>getForks</strong> provides an intuitive easy to understand and use interface for a limited subset of those features so everyone benefits without needing to spend hours reading documentation.
             </p>
-            <img class="third-width" src="/images/daniela-RELOvb0rrCE-unsplash.jpg" alt="Couscous with a chickpea curry">
-            </section>
-            <section class="flex vertical-center gap">
-            <img class="third-width" src="/images/daniela-RELOvb0rrCE-unsplash.jpg" alt="Couscous with a chickpea curry">
-            <p>To improve this situation, <strong>getForks</strong> borrows some ideas from version control software to enable
-                users to easily write, save, modify, share and fork recipes from other others.  While this 
-                might sound complicated, what it means is that users can easily find their recipes in one 
-                convenient (and searchable) spot online, and keep track of the original recipe along with 
-                modifications they've made over time.  Best of all, recipes can be shared and copied effortlessly
-                by other users so there's no need to write a recipe out for everyone who wants it after dinner.  
+            <a href="/signup"class="hidden p-3 px-6 pt-2 text-white bg-blue rounded-full baseline hover:bg-brightCyan md:block mx-auto"
+            >Signup</a>
+          </div>
+    <div class="flex flex-col space-y-8 pb-32 md:w-1/2">
+        <div
+          class="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row"
+        >
+          <div class="rounded-l-full bg-blue md:bg-transparent">
+            <div class="flex items-center space-x-2">
+              <div
+                class="px-4 py-2 text-white rounded-full md:py-1 bg-blue"
+              >
+                01
+              </div>
+              <h3 class="text-base font-bold md:mb-4 md:hidden">
+                Leverage the power of source control
+              </h3>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="hidden mb-4 text-lg font-bold md:block">
+                Leverage the power of source control
+            </h3>
+            <p class="text-darkGrayishBlue">
+              Source control is powerful, but <strong>getForks</strong> uses a subset of features, which includes easy forking, version history, and 
             </p>
-        </section>
-    </article>
+          </div>
+        </div>
+        <div
+          class="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row"
+        >
+          <div class="rounded-l-full bg-blue md:bg-transparent">
+            <div class="flex items-center space-x-2">
+              <div
+                class="px-4 py-2 text-white rounded-full md:py-1 bg-blue"
+              >
+                02
+              </div>
+              <h3 class="text-base font-bold md:mb-4 md:hidden">
+                Easily fork recipes to save and modify
+              </h3>
+            </div>
+          </div>
+          <div>
+            <h3 class="hidden mb-4 text-lg font-bold md:block">
+                Easily fork recipes to save and modify
+            </h3>
+            <p class="text-darkGrayishBlue">
+              Simply click the &Psi; symbol on a recipe to clone the 
+              repository enabling you to save, find, and modify it as desired later on.  This copy remains there, even if the original is changed or deleted later on.
+            </p>
+          </div>
+        </div>
+        <div
+          class="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row"
+        >
+          <div class="rounded-l-full bg-blue md:bg-transparent">
+            <div class="flex items-center space-x-2">
+              <div
+                class="px-4 py-2 text-white rounded-full md:py-1 bg-blue"
+              >
+                03
+              </div>
+              <h3 class="text-base font-bold md:mb-4 md:hidden">
+                Easy editing
+              </h3>
+            </div>
+          </div>
+          <div>
+            <h3 class="hidden mb-4 text-lg font-bold md:block">
+              Easy editing
+            </h3>
+            <p class="text-darkGrayishBlue">
+              <strong>getForks</strong> uses a simple markdown editor for formatting and developing recipes.  This allows users to customize the appearance of recipes without the complexity of 
+              html or the rigidity of predefined styles.  You're free to 
+              follow the template provided or switch it up if you're already comfortable with markdown.  
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </body>
 </html>
