@@ -4,7 +4,7 @@
   "description": "A recipe sharing web app that uses simplified version control to improve user experience.",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "tailwindcss -i ./input.css -o ./public/css/style.css --watch & nodemon server.js",
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -28,6 +28,7 @@
     "validator": "^13.6.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "tailwindcss": "^3.1.8"
   }
 }

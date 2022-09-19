@@ -5,7 +5,14 @@ const modal = document.querySelector(".modal");
 const modalBtn = document.querySelector("#openModal");
 const modalClose = document.querySelector(".close")
 const versionSelect = document.querySelector('#version')
+const btn = document.getElementById('menu-btn')
+const nav = document.getElementById('menu')
 
+btn.addEventListener('click', () => {
+  btn.classList.toggle('open')
+  nav.classList.toggle('flex')
+  nav.classList.toggle('hidden')
+})
 
 if (modalBtn) modalBtn.addEventListener('click', () => openModal(modal))
 if (modalClose) modalClose.addEventListener('click', closeModal)
