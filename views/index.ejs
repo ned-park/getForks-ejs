@@ -16,18 +16,20 @@
         <section class="container mx-auto flex flex-wrap justify-center space-x-4 align-items center p-2">
             <% repos.filter(repo => repo.display).forEach( repo => { %> 
                 <div class="flex flex-col justify-center">
-                    <div class="flex flex-col md:flex-row md:max-w-xl h-32 rounded-lg bg-white shadow-lg">
-                    <% if (repo.image) {%>
-                      <img class=" w-full h-96 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg" src="<%=repo.image%>" alt="" />
-                      <%}%>
-                      <div class="p-6 flex flex-col justify-start">
-                        <h5 class="text-gray-900 text-xl font-medium mb-2"><%=repo.title%></h5>
-                        <% if (repo.description.length > 0) { %>
-                            <p class="text-gray-700 text-base mb-4"><%=repo.description.slice(0,128) + '...'%></p>
-                        <% } %>
-                        <!-- <p class="text-brBlack text-xs"><%=repo.creationDate%></p> -->
-                      </div>
-                    </div>
+                    <a href="<%=repo.userId.username%>/<%=repo._id%>">
+                        <div class="flex flex-col md:flex-row md:max-w-xl h-32 rounded-lg bg-white shadow-lg">
+                            <% if (repo.image) {%>
+                            <img class=" w-full h-96 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg" src="<%=repo.image%>" alt="" />
+                            <%}%>
+                            <div class="p-6 flex flex-col justify-start">
+                                <h5 class="text-gray-900 text-xl font-medium mb-2"><%=repo.title%></h5>
+                                <% if (repo.description.length > 0) { %>
+                                    <p class="text-gray-700 text-base mb-4"><%=repo.description.slice(0,128) + '...'%></p>
+                                <% } %>
+                                <!-- <p class="text-brBlack text-xs"><%=repo.creationDate%></p> -->
+                            </div>
+                        </div>
+                    </a>
                 </div>
             <% }) %>  
         </section>
