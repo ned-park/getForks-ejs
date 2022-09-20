@@ -10,35 +10,41 @@
 </head>
 <body class="bg-white">
     <%- include('partials/header') -%>
-    <h2><a href="."><%=usernamePage%></a></h2>
-    <section class="content-container flex flex-end" id="version-select">
-        <label for="version">Choose a version:</label>
-        <select name="version" id="version">
-            <% for (let i = 0; i < repo.versions.length; i++) { 
-                let selected = ( version == i ) ? "selected" : "" 
+    <section class="container m-auto">
+        <h2><a href="."><%=usernamePage%></a></h2>
+        <section class="content-container flex flex-end" id="version-select">
+            <label for="version">Choose a version:</label>
+            <select name="version" id="version">
+                <% for (let i = 0; i < repo.versions.length; i++) { 
+                    let selected = ( version == i ) ? "selected" : "" 
                 %>
-                <option value="<%=i%>" <%=selected%>><%=i%></option>
-            <% } %>
+                    <option value="<%=i%>" <%=selected%>><%=i%></option>
+            <% } %>  
         </select>
-    </section>
+        </section>
 
-    <section class="content-container recipe-body shadow" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
+    <section class="container flex flex-col recipe-body shadow" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
         <% if (user != null && user.username === usernamePage) {%>
-            <span class='del makeBig' >&times;</span>
-            <span class='edit makeBig'>&cup;</span>
+            <div class="flex justify-between">
+                <span class='del text-2xl font-bold' >&times;</span>
+                <h1 class="font-bold text-3xl text-center" data-username="<%=usernamePage%>"><%=repo.versions[version].title%></h1>
+                <span class='edit text-2xl font-bold'>&cup;</span>
+            </div>
         <% } else if (user != null){ %>
-            <form action="/<%=usernamePage%>/forkRepo" method="POST">
-                <input type="submit" value="&Psi;" class="makeBig fork">
-                <input type="hidden" name="repoId" value="<%=repo._id%>">
-            </form>
+            <div class="flex justify-end"></div>
+                <form action="/<%=usernamePage%>/forkRepo" method="POST">
+                    <input type="submit" value="&Psi;" class="makeBig fork">
+                    <input type="hidden" name="repoId" value="<%=repo._id%>">
+                </form>
+            </div>       
+            <h1 class="font-bold text-3xl text-center" data-username="<%=usernamePage%>"><%=repo.versions[version].title%></h1>
             <!-- <span class='fork'>Fork</span> -->
         <% } %>
-        <h1 class="center" data-username="<%=usernamePage%>"><%=repo.versions[version].title%></h1>
         
         <% if (repo.image) {
             let baseUrl = repo.image.slice(0,49), filename = repo.image.slice(62) 
         %>
-        <img
+        <img class="mt-4 self-center"
     	sizes="(min-width: 30em) 50em, 28em, 100vw"
     	srcset="<%=baseUrl%>/f_auto,q_70,w_256/<%=filename%> 256w,
     	        <%=baseUrl%>/f_auto,q_70,w_512/<%=filename%> 512w,
@@ -70,6 +76,7 @@
                 <input type="submit" value="Update Recipe">
             </form>
         </section>
+    </section>
     </section>
     <script src="../js/main.js"></script>
 </body>

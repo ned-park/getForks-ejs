@@ -61,6 +61,7 @@ module.exports = {
                 versions: [newRecipe._id],
                 tags: req.body.tags.length > 0? req.body.tags.split(' ') : [],
             })
+            
             newRecipe.repo = newRepo._id
             const savedRecipe = await newRecipe.save()
             const savedRepo = await newRepo.save()
