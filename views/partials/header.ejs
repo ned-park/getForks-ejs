@@ -1,7 +1,35 @@
-<nav class="relative container mx-auto p-6">
-  <!-- Flex container -->
+<!-- <nav class="flex items-center justify-between flex-wrap bg-blue p-6">
+  <div class="flex items-center flex-shrink-0 text-white mr-6">
+    <svg class="fill-current h-8 w-8 mr-2" width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"/></svg>
+    <span class="font-semibold text-3xl tracking-tight">getForks</span>
+  </div>
+  <div class="block lg:hidden">
+    <button class="flex items-center px-3 py-2 border rounded text-brCyan border-dark hover:text-white hover:border-white" id="menu-btn">
+      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+    </button>
+  </div>
+  <div class="hidden w-full block flex-grow lg:flex lg:items-center lg:w-auto" id="menu">
+    <div class="text-sm lg:flex-grow">
+      <a href="/about" class="block mt-4 lg:inline-block font-bold lg:mt-0 text-brBlack hover:text-white mr-4">
+        About
+      </a>
+      <a href="#responsive-header" class="block mt-4 lg:inline-block font-bold lg:mt-0 text-brBlack hover:text-white mr-4">
+        Examples
+      </a>
+      <a href="#responsive-header" class="block mt-4 lg:inline-block font-bold lg:mt-0 text-brBlack hover:text-white">
+        Blog
+      </a>
+    </div>
+    <div>
+      <a href="#" class="sm:hidden inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-blue hover:bg-white mt-4 lg:mt-0">Download</a>
+    </div>
+  </div>
+</nav> -->
+
+
+
+<nav class="relative mx-auto p-6 bg-black w-full">
   <div class="flex items-center justify-between">
-    <!-- Logo -->
     <div class="pt-2">
       <a href="/">
         <% if (!user) { %>
@@ -11,29 +39,25 @@
         <% } %>
       </a>
     </div>
-    <!-- Menu Items -->
     <div class="hidden space-x-6 md:flex font-bold">
-      <a href="<%=user? `/${user.username}` : `/login`%>" class="hover:text-brCyan">myRecipes</a>
-      <a href="/about" class="hover:text-brCyan">About</a>
+      <a href="<%=user? `/${user.username}` : `/login`%>" class="text-brCyan hover:text-blue">myRecipes</a>
+      <a href="/about" class="text-brCyan hover:text-blue">About</a>
       <% if (!user) { %>
-      <a href="/login" class="hover:text-brCyan">Login</a>
-      <a href="/signup" class="hover:text-brCyan">Sign up</a>
+      <a href="/login" class="text-brCyan hover:text-blue">Login</a>
+      <a href="/signup" class="text-brCyan hover:text-blue">Sign up</a>
       <% } else { %>
-      <a href="/logout" class="hover:text-brCyan">Logout</a>
+      <a href="/logout" class="text-brCyan hover:text-blue">Logout</a>
     <% } %>
     </div>
-    <!-- Button
-    <form action="" method="post" class="hidden items-center space-x-2 md:flex">
+    
+    <!-- <form action="" method="post" class="hidden items-center space-x-2 md:flex">
       <input type="text" placeholder="Type here" class="rounded py-2 px-2 border-2 border-blue  w-full max-w-xs" />
       <a
       href="#"
       class="hidden p-3 px-6 pt-2 text-white bg-brCyan rounded-full baseline hover:bg-brightRedLight md:block"
       >Search</a
     >
-    </form> -->
-    
-
-    <!-- Hamburger Icon -->
+    </form>  -->
     <button
       id="menu-btn"
       class="block hamburger md:hidden focus:outline-none"
@@ -44,7 +68,7 @@
     </button>
   </div>
 
-  <!-- Mobile Menu -->
+
   <div class="md:hidden">
     <div
       id="menu"
@@ -61,3 +85,5 @@
     </div>
   </div>
 </nav>
+
+    
