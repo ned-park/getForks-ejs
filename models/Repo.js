@@ -5,6 +5,7 @@ const RepoSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+    index: true
   },
   latest: {
     type: Number,
@@ -35,7 +36,8 @@ const RepoSchema = new mongoose.Schema({
   },
   tags: {
     type: [String],
-    required: false
+    required: false,
+    index: true
   },
   branches: {
     type: [

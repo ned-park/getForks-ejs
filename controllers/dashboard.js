@@ -7,7 +7,7 @@ module.exports = {
     getUser: async (req, res) => {
         try{
             let landedAtUser = req.baseUrl.slice(1,) || req.user
-            let userToDisplay = await User.findOne({username: landedAtUser}).populate('repos')
+            let userToDisplay = await User.findOne({username: landedAtUser}).populate('repos').lean()
 
             // Make sure there is a user, and strip the password and email from the document
             if (!userToDisplay) return res.status(404).json({errors: [{msg: 'User does not exist'}]})
@@ -28,13 +28,13 @@ module.exports = {
     },
     getRecipe: async (req, res) => { // unused, might be handy
         let usernamePage = req.baseUrl.slice(1,)
-        const recipe = await Recipe.findById(req.params.recipeId)
+        const recipe = await Recipe.findById(req.params.recipeId).lean()
         console.log(recipe)
         res.render('recipe.ejs', {user: req.user, recipe: recipe, usernamePage: usernamePage})
     },
     getRepo: async (req, res) => { 
         let usernamePage = req.baseUrl.slice(1,)
-        const repo = await Repo.findOne({_id: req.params.repoId}).populate('versions').populate('userId')
+        const repo = await Repo.findOne({_id: req.params.repoId}).populate('versions').populate('userId').lean()
         // console.log(repo)
         res.render('repo.ejs', {user: req.user || null, repo: repo, usernamePage: usernamePage, version: (req.query.version || repo.latest)})
     },
