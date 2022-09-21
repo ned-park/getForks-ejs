@@ -10,11 +10,14 @@
 </head>
 <body class="bg-white">
     <%- include('partials/header') -%>
-    <article class="m-auto container max-w-5xl">
-        <h1 username="<%=usernamePage%>" class="font-bold text-xl">
-            <% if (user != null && user.username === usernamePage) {%>Welcome <% } %><%= usernamePage %>
-        </h1>
-        <span id="openModal" class="text-3xl font-bold">&plus;</span>
+    <article class="m-auto container max-w-4xl">
+        <div class="flex justify-between items-center">
+            <span>&nbsp;</span>
+            <h1 username="<%=usernamePage%>" class="font-bold text-xl mt-8">
+                <% if (user != null && user.username === usernamePage) {%>Welcome <% } %><%= usernamePage %>
+            </h1>
+            <span id="openModal" class="text-3xl font-bold cursor-pointer" >&plus;</span>
+        </div>
         <section class="container mx-auto flex flex-wrap justify-center space-x-4 items-center p-2 max-w-5xl space-y-4">
         <% repos.filter(repo => repo.display).forEach( repo => { %> 
             <div class="flex flex-col justify-center">
@@ -58,9 +61,11 @@
                 <input type="text" placeholder="Ingredients" name='ingredients' required class="p-1 rounded">
                 <input type="text" placeholder="Instructions" name='instructions' required class="p-1 rounded">
                 <input type="text" placeholder="Space separated tags" name='tags' class="p-1 rounded">
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file" class="bg-blue ">
-                <input type="submit" value="Create Recipe" class="font-bold px-4 py-2 bg-blue hover:text-brBlack cursor:pointer self-center rounded">
+                <div class="flex justify-start items-center">
+                    <label for="imgUpload" class="form-label">Image (optional): </label>
+                    <input type="file" id="imageUpload" name="file" placeholder="" class="form-control px-4 py-2 hover:text-brBlack cursor:pointer self-start rounded">
+                </div>
+                <input type="submit" value="Create Recipe" class="font-bold px-4 py-2 bg-blue hover:text-brBlack cursor:pointer self-center rounded mt-8">
             </form>
         </section>
     </section>

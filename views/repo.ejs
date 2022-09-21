@@ -14,8 +14,8 @@
         <div class="flex justify-between">
         <h2 class="font-bold text-xl"><a href="."><%=usernamePage%></a></h2>
         <section class="content-container flex flex-end" id="version-select">
-            <label for="version">Choose a version:</label>
-            <select name="version" id="version">
+            <label for="version">Choose a version: </label>
+            <select name="version" id="version" class="mb-2 text-lg">
                 <% for (let i = 0; i < repo.versions.length; i++) { 
                     let selected = ( version == i ) ? "selected" : "" 
                 %>
@@ -25,12 +25,12 @@
         </section>
         </div>
 
-    <section class="container flex flex-col recipe-body shadow" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
+    <section class="container flex flex-col recipe-body shadow p-4" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
         <% if (user != null && user.username === usernamePage) {%>
-            <div class="flex justify-between">
-                <span class='del text-2xl font-bold' >&times;</span>
+            <div class="flex justify-between" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
+                <span class="del text-3xl text-blue font-bold cursor-pointer" >&times;</span>
                 <h1 class="font-bold text-3xl text-center" data-username="<%=usernamePage%>"><%=repo.versions[version].title%></h1>
-                <span class='edit text-2xl font-bold'>&cup;</span>
+                <span class='edit text-3xl text-blue font-bold cursor-pointer'>&cup;</span>
             </div>
         <% } else if (user != null){ %>
             <div class="flex justify-end"></div>
