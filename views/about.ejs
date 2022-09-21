@@ -11,9 +11,9 @@
 <body  class="bg-white">
     <%- include('partials/header') -%>
     <section id="hero">
-        <div class="container flex flex-col-reverse items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0 md:flex-row max-w-5xl">
+        <div class="container flex flex-col-reverse items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0 md:flex-row max-w-5xl md:space-x-6">
             <div class="flex flex-col mb-32 space-y-12 md:w-1/2">
-            <h1 class="max-w-md text-43xl font-bold text-center md:text-4xl md:text-left">
+            <h1 class="mt-16 max-w-md text-4xl font-bold text-center md:text-4xl md:text-left md:mt-0">
                 How it started
             </h1>
             <p class="max-w-md text-justify text-darkGrayishBlue md:text-justify lg:max-w-lg" >
@@ -31,13 +31,13 @@
     </section>
     <section id="features">
         <div
-          class="container flex flex-col px-4 mx-auto mt-10 space-y-12 md:space-y-40 md:flex-row  max-w-5xl"
+          class="container flex flex-col px-4 mx-auto mt-10 space-y-12 md:space-y-40 md:flex-row max-w-5xl md:space-x-6"
         >
           <div class="flex flex-col space-y-12 md:w-1/2 md:pr-4">
-            <h2 class="max-w-md text-4xl font-bold text-center md:text-left">
+            <h2 class="max-w-md text-4xl font-bold mx-auto text-center md:text-left">
               An improved approach to recipe sharing
             </h2>
-            <p class="max-w-md text-justify text-darkGrayishBlue md:text-justify lg:max-w-lg">
+            <p class="max-w-md text-justify text-darkGrayishBlue mx-auto md:text-justify lg:max-w-lg">
               <strong>getForks</strong> leverages the power of version control tools used during software development to make creating, sharing, and finding recipes easier.  Those tools are complex, but <strong>getForks</strong> provides an intuitive easy to understand and use interface for a limited subset of those features so everyone benefits without needing to spend hours reading documentation.
             </p>
             <%if (user == null) {%>
