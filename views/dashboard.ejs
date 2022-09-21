@@ -58,8 +58,8 @@
                 <input type="text" name="title" placeholder="Recipe Title" required class="p-1 rounded">
                 <input type="text" placeholder="Description (optional)" name='description' class="p-1 rounded">
                 <input type="text" placeholder="Notes (optional)" name='notes' class="p-1 rounded">
-                <input type="text" placeholder="Ingredients" name='ingredients' required class="p-1 rounded">
-                <input type="text" placeholder="Instructions" name='instructions' required class="p-1 rounded">
+                <textarea placeholder="Ingredients" name='ingredients' id="ingredients" ></textarea>
+                <textarea placeholder="Instructions" name='instructions' id="instructions" required class="p-1 rounded"></textarea>
                 <input type="text" placeholder="Space separated tags" name='tags' class="p-1 rounded">
                 <div class="flex justify-start items-center">
                     <label for="imgUpload" class="form-label">Image (optional): </label>
@@ -70,5 +70,10 @@
         </section>
     </section>
     <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.19.1/ckeditor.js" integrity="sha512-Ooi9IbjM2SIDjQ02ENbPFuuORT8F8Rc+rowcYfLneDwKRxw1+gVVj5tciVmV/APnA/Ys+qy1MbNKK3k2EaAHcw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        CKEDITOR.replace('ingredients')
+        CKEDITOR.replace('instructions');
+    </script>
 </body>
 </html>

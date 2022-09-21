@@ -25,7 +25,7 @@
         </section>
         </div>
 
-    <section class="container flex flex-col recipe-body shadow p-4" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
+    <section class="container flex flex-col recipe-body shadow p-4 max-w-5xl mx-auto" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
         <% if (user != null && user.username === usernamePage) {%>
             <div class="flex justify-between" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
                 <span class="del text-3xl text-blue font-bold cursor-pointer" >&times;</span>
@@ -57,10 +57,10 @@
     	alt="User provided image of recipe" />
 
         <% } %>
-        <p><%=repo.description%></p>
-        <p>Notes: <%=repo.versions[version].notes%></p>
-        <p>ingred: <%=repo.versions[version].ingredients%></p>
-        <p>instr: <%=repo.versions[version].instructions%></p>
+        <h2 class="font-bold text-xl my-2 mt-8">Description:</h2><p><%=repo.description%></>
+        <h2 class="font-bold text-xl my-2">Notes:</h2> <p><%=repo.versions[version].notes%></p>
+        <h2 class="font-bold text-xl my-2">Ingredients:</h2><p><%-repo.versions[version].ingredients%></p>
+        <h2 class="font-bold text-xl my-2">Instructions:</h2> <p><%-repo.versions[version].instructions%></p>
 
     </section>
     <!-- Make edit into modal possibly a drop-in partial view for it to avoid wet code? -->
@@ -75,8 +75,10 @@
                 <input type="text" name="title" placeholder="Recipe Title" value="<%=repo.title%>" class="p-1 rounded">
                 <input type="text" placeholder="Notes (optional)" value="<%=repo.versions[version].notes%>" name='notes' class="p-1 rounded">
                 <!-- <input type="text" placeholder="" value="<%=repo.description%>" name='description'> -->
-                <input type="text" placeholder="Ingredients" value="<%=repo.versions[version].ingredients%>" name='ingredients' class="p-1 rounded">
-                <input type="text" placeholder="Instructions" value="<%=repo.versions[version].instructions%>" name='instructions' class="p-1 rounded">
+                <!-- <input type="text" placeholder="Ingredients" value="<%=repo.versions[version].ingredients%>" name='ingredients' class="p-1 rounded">
+                <input type="text" placeholder="Instructions" value="<%=repo.versions[version].instructions%>" name='instructions' class="p-1 rounded"> -->
+                <textarea placeholder="Ingredients" name='ingredients' id="ingredients" ><%=repo.versions[version].ingredients%></textarea>
+                <textarea placeholder="Instructions" name='instructions' id="instructions" required class="p-1 rounded"><%=repo.versions[version].instructions%></textarea>
                 <input type="hidden" name="repoId" value="<%=repo._id%>">
                 <input type="submit" value="Update Recipe" class="font-bold px-4 py-2 bg-blue hover:text-brBlack cursor:pointer self-center rounded">
             </form>
@@ -84,5 +86,10 @@
     </section>
     </section>
     <script src="../js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.19.1/ckeditor.js" integrity="sha512-Ooi9IbjM2SIDjQ02ENbPFuuORT8F8Rc+rowcYfLneDwKRxw1+gVVj5tciVmV/APnA/Ys+qy1MbNKK3k2EaAHcw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        CKEDITOR.replace('ingredients')
+        CKEDITOR.replace('instructions');
+    </script>
 </body>
 </html>
