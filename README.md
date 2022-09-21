@@ -11,7 +11,7 @@ getForks is still in early development, but a testing area is available to explo
 
 # Technology Packages/Dependencies used 
 
-Tailwind, bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mongodb, mongoose, morgan, nodemon, passport, passport-local, validator, ckeditor
+bcrypt, ckeditorconnect-mongo, dotenv, ejs, express, express-flash, express-session, javascript, mongodb, mongoose, morgan, node, nodemon, passport, passport-local, tailwind, validator, 
 
 ---
 
@@ -23,12 +23,12 @@ npm install
 
 ## Then
 
-- Create a `.env` file and add the following as `key: value` 
+- Create the `config/.env` file and add the following as `key=value` 
   - PORT: 3000 or some other port number
   - MONGO_URI: `your database URI` 
-  - 
-  -
-  -
+  - CLOUD_NAME: Cloudinary Cloudname
+  - API_KEY: Cloudinary API_Key
+  - API_SECRET: Cloudinary API_Secret
  
 ## Finally
 
