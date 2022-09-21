@@ -46,7 +46,7 @@
         <% if (repo.image) {
             let baseUrl = repo.image.slice(0,49), filename = repo.image.slice(62) 
         %>
-        <img class="mt-4 self-center"
+        <img class="mt-4 self-center rounded"
     	sizes="(min-width: 30em) 50em, 28em, 100vw"
     	srcset="<%=baseUrl%>/f_auto,q_70,w_256/<%=filename%> 256w,
     	        <%=baseUrl%>/f_auto,q_70,w_512/<%=filename%> 512w,
@@ -66,16 +66,19 @@
     <!-- Make edit into modal possibly a drop-in partial view for it to avoid wet code? -->
     <section class="modal">
         <section class="content-container modal-content">
-            <span class="close">&times;</span>
-            <h2 class="center">Update Recipe: <%=repo.title%></h2>
-            <form action="/<%=usernamePage%>/commitRecipe" method='POST' class="flex col">
-                <input type="text" name="title" placeholder="Recipe Title" value="<%=repo.title%>">
-                <input type="text" placeholder="Notes (optional)" value="<%=repo.versions[version].notes%>" name='notes'>
+            <div class="flex justify-between items-center">
+                <span>&nbsp;</span>
+                <h2 class="content-center">Update Recipe: <%=repo.title%></h2>
+                <span class="close">&times;</span>
+            </div>
+            <form action="/<%=usernamePage%>/commitRecipe" method='POST'  class="flex flex-col space-y-2">
+                <input type="text" name="title" placeholder="Recipe Title" value="<%=repo.title%>" class="p-1 rounded">
+                <input type="text" placeholder="Notes (optional)" value="<%=repo.versions[version].notes%>" name='notes' class="p-1 rounded">
                 <!-- <input type="text" placeholder="" value="<%=repo.description%>" name='description'> -->
-                <input type="text" placeholder="Ingredients" value="<%=repo.versions[version].ingredients%>" name='ingredients'>
-                <input type="text" placeholder="Instructions" value="<%=repo.versions[version].instructions%>" name='instructions'>
+                <input type="text" placeholder="Ingredients" value="<%=repo.versions[version].ingredients%>" name='ingredients' class="p-1 rounded">
+                <input type="text" placeholder="Instructions" value="<%=repo.versions[version].instructions%>" name='instructions' class="p-1 rounded">
                 <input type="hidden" name="repoId" value="<%=repo._id%>">
-                <input type="submit" value="Update Recipe">
+                <input type="submit" value="Update Recipe" class="font-bold px-4 py-2 bg-blue hover:text-brBlack cursor:pointer self-center rounded">
             </form>
         </section>
     </section>
