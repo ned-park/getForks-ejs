@@ -40,8 +40,11 @@
             <p class="max-w-md text-justify text-darkGrayishBlue md:text-justify lg:max-w-lg">
               <strong>getForks</strong> leverages the power of version control tools used during software development to make creating, sharing, and finding recipes easier.  Those tools are complex, but <strong>getForks</strong> provides an intuitive easy to understand and use interface for a limited subset of those features so everyone benefits without needing to spend hours reading documentation.
             </p>
+            <%if (user == null) {%>
             <a href="/signup"class="hidden p-3 px-6 pt-2 text-white bg-blue rounded-full baseline hover:bg-brightCyan md:block mx-auto"
             >Signup</a>
+            <%}%>
+            
           </div>
     <div class="flex flex-col space-y-8 pb-32 md:w-1/2">
         <div

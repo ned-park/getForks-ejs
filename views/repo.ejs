@@ -10,8 +10,9 @@
 </head>
 <body class="bg-white">
     <%- include('partials/header') -%>
-    <section class="container m-auto">
-        <h2><a href="."><%=usernamePage%></a></h2>
+    <section class="container m-auto mt-8">
+        <div class="flex justify-between">
+        <h2 class="font-bold text-xl"><a href="."><%=usernamePage%></a></h2>
         <section class="content-container flex flex-end" id="version-select">
             <label for="version">Choose a version:</label>
             <select name="version" id="version">
@@ -19,9 +20,10 @@
                     let selected = ( version == i ) ? "selected" : "" 
                 %>
                     <option value="<%=i%>" <%=selected%>><%=i%></option>
-            <% } %>  
-        </select>
+                <% } %>  
+            </select>
         </section>
+        </div>
 
     <section class="container flex flex-col recipe-body shadow" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
         <% if (user != null && user.username === usernamePage) {%>
@@ -33,7 +35,7 @@
         <% } else if (user != null){ %>
             <div class="flex justify-end"></div>
                 <form action="/<%=usernamePage%>/forkRepo" method="POST">
-                    <input type="submit" value="&Psi;" class="makeBig fork">
+                    <input type="submit" value="&Psi;" class="text-2xl font-bold fork">
                     <input type="hidden" name="repoId" value="<%=repo._id%>">
                 </form>
             </div>       

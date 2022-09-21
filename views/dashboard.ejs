@@ -10,12 +10,12 @@
 </head>
 <body class="bg-white">
     <%- include('partials/header') -%>
-    <article class="m-auto container">
-        <span id="openModal" class="text-3xl font-bold">&plus;</span>
-        <h1 username="<%=usernamePage%>">
+    <article class="m-auto container max-w-5xl">
+        <h1 username="<%=usernamePage%>" class="font-bold text-xl">
             <% if (user != null && user.username === usernamePage) {%>Welcome <% } %><%= usernamePage %>
         </h1>
-        <section class="container mx-auto flex flex-wrap justify-center space-x-4 align-items center p-2">
+        <span id="openModal" class="text-3xl font-bold">&plus;</span>
+        <section class="container mx-auto flex flex-wrap justify-center space-x-4 items-center p-2 max-w-5xl space-y-4">
         <% repos.filter(repo => repo.display).forEach( repo => { %> 
             <div class="flex flex-col justify-center">
                 <a href="/<%=usernamePage%>/<%=repo._id%>">
@@ -48,19 +48,19 @@
         </section>
     </article>
     <section class="modal">
-        <section class="content-container modal-content">
-            <span class="close">&times;</span>
-            <h2 class="center">Add Recipe</h2>
-            <form action="/<%=usernamePage%>/createRecipe" method='POST' enctype="multipart/form-data" class="flex col">
-                <input type="text" name="title" placeholder="Recipe Title">
-                <input type="text" placeholder="Description (optional)" name='description'>
-                <input type="text" placeholder="Notes (optional)" name='notes'>
-                <input type="text" placeholder="Ingredients" name='ingredients'>
-                <input type="text" placeholder="Instructions" name='instructions'>
-                <input type="text" placeholder="Space separated tags" name='tags'>
+        <section class="container modal-content max-w-4xl mx-auto">
+            <span class="close text-3xl font-bold">&times;</span>
+            <h2 class="text-center font-bold text-xl mb-4">Add Recipe</h2>
+            <form action="/<%=usernamePage%>/createRecipe" method='POST' enctype="multipart/form-data" class="flex flex-col space-y-2" required>
+                <input type="text" name="title" placeholder="Recipe Title" required class="p-1 rounded">
+                <input type="text" placeholder="Description (optional)" name='description' class="p-1 rounded">
+                <input type="text" placeholder="Notes (optional)" name='notes' class="p-1 rounded">
+                <input type="text" placeholder="Ingredients" name='ingredients' required class="p-1 rounded">
+                <input type="text" placeholder="Instructions" name='instructions' required class="p-1 rounded">
+                <input type="text" placeholder="Space separated tags" name='tags' class="p-1 rounded">
                 <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
-                <input type="submit" value="Create Recipe">
+                <input type="file" class="form-control" id="imageUpload" name="file" class="bg-blue ">
+                <input type="submit" value="Create Recipe" class="font-bold px-4 py-2 bg-blue hover:text-brBlack cursor:pointer self-center rounded">
             </form>
         </section>
     </section>
