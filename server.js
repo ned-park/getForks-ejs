@@ -11,6 +11,7 @@ const { removeTrailingSlash } = require('./middleware/redirectSlash')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const aboutRoutes = require('./routes/about')
+const searchRoutes = require('./routes/search')
 const dashboardRoutes = require('./routes/dashboard')
 
 
@@ -47,6 +48,7 @@ app.use(flash())
 app.use(removeTrailingSlash)
   
 app.use('/', mainRoutes)
+app.use('/search', searchRoutes)
 app.use('/about', aboutRoutes)
 app.use('/:user', dashboardRoutes)
  

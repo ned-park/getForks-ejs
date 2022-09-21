@@ -10,9 +10,15 @@
 </head>
 <body class="bg-white">
     <%- include('partials/header') -%>
-    <article class="m-auto container">
+    <article class="m-auto container max-w-5xl">
         <!-- <span id="openModal" class="makeBig">&plus;</span> -->
-        <h1 class="mt-8 text-xl font-bold text-center">Browsing all recipes</h1>
+        <div class="flex flex-col mb-8 justify-between items-center md:flex-row md:mb-0">
+            <h1 class="mt-8 text-2xl font-bold text-left">Browsing recipes</h1>
+            <form action="/search" method="GET">
+                <input type="text" name="query" id="query" class="p-2 rounded mr-2">
+                <input type="submit" value="Search" class="font-bold px-4 py-2 bg-blue hover:text-brBlack cursor:pointer self-center rounded mt-8">
+            </form>
+        </div>
         <section class="container mx-auto flex flex-wrap justify-center space-x-4 align-items center p-2 space-y-4 max-w-5xl">
             <% repos.filter(repo => repo.display).forEach( repo => { %> 
                 <div class="flex flex-col justify-center">
