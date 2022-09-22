@@ -1,0 +1,27 @@
+<section class="container mx-auto flex flex-wrap p-2 space-y-1 pb-32">
+  <% repos.filter(repo => repo.display).forEach( repo => { %> 
+      <div class="flex flex-col justify-center w-full">
+          <div class="flex flex-row h-24 rounded-lg bg-white shadow-lg items-between">
+              <% if (repo.image) {%>
+              <img class="w-32 h-auto rounded-t-lg object-cover md:rounded-none md:rounded-l-lg" src="<%=repo.image%>" alt="" />
+              <%} else {%>
+              <div class="ml-2 w-44 md:w-36 h-96 md:h-auto"></div>
+              <%}%>
+              <div class="p-6 flex flex-col w-full">
+                  <a href="/<%=usernamePage%>/<%=repo._id%>">
+                      <h5 class="text-gray text-xl text-left font-medium hover:text-blue"><%=repo.title%></h5>
+                  </a>
+                  <div class="flex justify-between">
+                  <% if (repo.description.length > 0) { %>
+                      <span class="text-gray-700 text-base mb-4"><%=repo.description.slice(0,128) + '...'%></span>
+                  <% } else {%>
+                      <div></div>
+                  <% } %>
+                  <a href="/<%=usernamePage%>"><span class="text-gray-700 text-base mb-4 hover:text-blue"><%=user.username%></span></a>
+                  </div>
+                  <!-- <p class="text-brBlack text-xs"><%=repo.creationDate%></p> -->
+              </div>
+          </div>
+        </div>
+  <% }) %>    
+  </section>
