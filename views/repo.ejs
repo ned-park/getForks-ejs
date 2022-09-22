@@ -62,6 +62,8 @@
         <h2 class="font-bold text-xl my-2">Notes:</h2> <p><%=repo.versions[version].notes%></p>
         <h2 class="font-bold text-xl my-2">Ingredients:</h2><p><%-repo.versions[version].ingredients%></p>
         <h2 class="font-bold text-xl my-2">Instructions:</h2> <p><%-repo.versions[version].instructions%></p>
+        <h2 class="font-bold text-xl my-2">Tags:</h2>
+        <div class="text-left"><span><%repo.tags.forEach(tag => {%><a href="/search?query=<%=tag%>" class="hover:text-blue cursor:pointer"><span><%=tag%></span></a><%})%></span></div>
 
     </section>
     <!-- Make edit into modal possibly a drop-in partial view for it to avoid wet code? -->

@@ -14,13 +14,11 @@ module.exports = {
     },
     extend: {
       colors: {
-        white: '#eee8d5',
+        white: '#eeeeee',
         blue: '#268bd2',
-        black: '#073642',
-        green: '#859900',
-        brBlack: '#002b36',
-        brCyan: '#93a1a1',
-        red: '#dc322f'
+        black: '#3c4856',
+        brBlack: '#3c4856',
+        brCyan: '#a0acbd',
       }
     },
   },
