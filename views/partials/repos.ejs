@@ -8,7 +8,7 @@
               <div class="ml-2 w-44 md:w-36 h-96 md:h-auto"></div>
               <%}%>
               <div class="p-6 flex flex-col w-full">
-                  <a href="/<%=usernamePage%>/<%=repo._id%>">
+                  <a href="/<%=repo.userId.username%>/<%=repo._id%>">
                       <h5 class="text-gray text-xl text-left font-medium hover:text-blue"><%=repo.title%></h5>
                   </a>
                   <div class="flex justify-between">
@@ -17,7 +17,7 @@
                   <% } else {%>
                       <div></div>
                   <% } %>
-                  <a href="/<%=usernamePage%>"><span class="text-gray-700 text-base mb-4 hover:text-blue"><%=user.username%></span></a>
+                  <a href="/<%=repo.userId.username%>"><span class="text-gray-700 text-base mb-4 hover:text-blue"><%=repo.userId.username%></span></a>
                   </div>
                   <!-- <p class="text-brBlack text-xs"><%=repo.creationDate%></p> -->
               </div>

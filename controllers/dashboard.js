@@ -14,9 +14,14 @@ module.exports = {
             userToDisplay = {
                 username: userToDisplay.username, 
                 _id: userToDisplay._id || userToDisplay.id,
-                repos: userToDisplay.repos
+                repos: userToDisplay.repos.map(repo => {
+                    repo.userId = {
+                        ...repo.userId,
+                        username: userToDisplay.username
+                    }
+                    return repo
+                })
             }
-            console.log(userToDisplay.repos)
             if (userToDisplay) {
                 res.render('dashboard.ejs', {repos: userToDisplay.repos, user: req.user, usernamePage: userToDisplay.username})
             } else {

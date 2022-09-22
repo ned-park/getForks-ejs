@@ -11,7 +11,6 @@
 <body class="bg-white">
     <%- include('partials/header') -%>
     <article class="m-auto container max-w-5xl">
-        <!-- <span id="openModal" class="makeBig">&plus;</span> -->
         <div class="flex flex-col mb-8 justify-between items-center md:flex-row md:mb-0">
             <h1 class="mt-8 text-2xl font-bold text-left">Browsing recipes</h1>
             <form action="/search" method="GET">
@@ -19,50 +18,8 @@
                 <input type="submit" value="Search" class="font-bold px-4 py-2 bg-blue hover:text-brBlack cursor:pointer self-center rounded mt-8">
             </form>
         </div>
-        <section class="container mx-auto flex flex-wrap justify-center space-x-4 align-items center p-2 space-y-4 max-w-5xl">
-            <% repos.filter(repo => repo.display).forEach( repo => { %> 
-                <div class="flex flex-col justify-center">
-                    <a href="<%=repo.userId.username%>/<%=repo._id%>">
-                        <div class="flex flex-col md:flex-row md:max-w-xl h-32 rounded-lg bg-white shadow-lg">
-                            <% if (repo.image) {%>
-                            <img class=" w-full h-96 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg" src="<%=repo.image%>" alt="" />
-                            <%}%>
-                            <div class="p-6 flex flex-col justify-start">
-                                <h5 class="text-gray-900 text-xl font-medium mb-2"><%=repo.title%></h5>
-                                <% if (repo.description.length > 0) { %>
-                                    <p class="text-gray-700 text-base mb-4"><%=repo.description.slice(0,128) + '...'%></p>
-                                <% } %>
-                                <!-- <p class="text-brBlack text-xs"><%=repo.creationDate%></p> -->
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            <% }) %>  
-        </section>
+        <%- include('partials/repos') -%>
     </article>
-
-        
-        
-        
-        
-        
-        
-        
-<!--         
-        <section>
-        <% repos.filter(repo => repo.display).forEach(repo => { %> 
-            <article class='recipeItem shadow' data-id='<%=repo._id%>'>
-                <a href="<%=repo.userId.username%>/<%=repo._id%>">
-                    <h3 class="center"><%=repo.title%></h3>
-                </a>
-                <% if (repo.description.length > 0) { %>
-                    <p><%=repo.description.slice(0,128) + '...'%></p>
-                <% } %>
-            </article>
-            
-        <% }) %>     
-        </section>
-    </article> -->
     <script src="js/main.js"></script>
 </body>
 </html>
