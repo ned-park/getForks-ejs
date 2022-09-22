@@ -16,7 +16,7 @@ module.exports = {
                 _id: userToDisplay._id || userToDisplay.id,
                 repos: userToDisplay.repos
             }
-
+            console.log(userToDisplay.repos)
             if (userToDisplay) {
                 res.render('dashboard.ejs', {repos: userToDisplay.repos, user: req.user, usernamePage: userToDisplay.username})
             } else {
