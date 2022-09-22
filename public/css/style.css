@@ -880,7 +880,7 @@ video {
 
 .bg-black {
   --tw-bg-opacity: 1;
-  background-color: rgb(60 72 86 / var(--tw-bg-opacity));
+  background-color: rgb(34 34 34 / var(--tw-bg-opacity));
 }
 
 .object-cover {
