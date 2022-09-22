@@ -12,13 +12,14 @@
     <%- include('partials/header') -%>
     <article class="m-auto container max-w-5xl">
         <div class="flex justify-between items-center">
-            <span>&nbsp;</span>
+            <!-- <span>&nbsp;</span> -->
             <h1 username="<%=usernamePage%>" class="font-bold text-xl mt-8 ml-8">
-                <% if (user != null && user.username === usernamePage) {%>Welcome <% } %><%= usernamePage %>
+                <%= usernamePage %>'s recipes
             </h1>
+                <% if (user != null && user.username === usernamePage) {%>
             <span id="openModal" class="text-3xl font-bold cursor-pointer mt-8 mr-8" >&plus;</span>
+            <%} %>
         </div>
-
        <%-include('partials/repos')-%>
     </article>
     <section class="modal">
