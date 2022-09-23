@@ -693,6 +693,14 @@ video {
   height: 24rem;
 }
 
+.h-32 {
+  height: 8rem;
+}
+
+.h-36 {
+  height: 9rem;
+}
+
 .w-full {
   width: 100%;
 }
@@ -1359,6 +1367,10 @@ nav {
 
   .md\:h-auto {
     height: auto;
+  }
+
+  .md\:h-24 {
+    height: 6rem;
   }
 
   .md\:w-1\/2 {
