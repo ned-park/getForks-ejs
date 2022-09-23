@@ -7,7 +7,7 @@ module.exports = {
     getUser: async (req, res) => {
         try{
             let landedAtUser = req.baseUrl.slice(1,) || req.user
-            let userToDisplay = await User.findOne({username: landedAtUser}).populate('repos').lean()
+            let userToDisplay = await User.findOne({username: landedAtUser}).populate({path: 'repos', options: { sort: { 'creationDate': -1 }}}).lean()
 
             // Make sure there is a user, and strip the password and email from the document
             if (!userToDisplay) return res.status(404).json({errors: [{msg: 'User does not exist'}]})

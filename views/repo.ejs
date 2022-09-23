@@ -24,8 +24,7 @@
             </select>
         </div>
     </section>
-        
-
+    
     <section class="container flex flex-col recipe-body shadow p-4 max-w-5xl mx-auto" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
         <% if (user != null && user.username === usernamePage) {%>
             <div class="flex justify-between" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
@@ -63,7 +62,7 @@
         <h2 class="font-bold text-xl my-2">Ingredients:</h2><p><%-repo.versions[version].ingredients%></p>
         <h2 class="font-bold text-xl my-2">Instructions:</h2> <p><%-repo.versions[version].instructions%></p>
         <h2 class="font-bold text-xl my-2">Tags:</h2>
-        <div class="text-left"><span><%repo.tags.forEach(tag => {%><a href="/search?query=<%=tag%>" class="hover:text-blue cursor:pointer"><span><%=tag%></span></a><%})%></span></div>
+        <div class="text-left"><span><%repo.tags.forEach(tag => {%><a href="/search?query=<%=tag%>" class="hover:text-blue cursor:pointer"><span><%=tag%></span></a> <%})%></span></div>
 
     </section>
     <!-- Make edit into modal possibly a drop-in partial view for it to avoid wet code? -->

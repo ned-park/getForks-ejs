@@ -57,6 +57,12 @@ const RepoSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
     required: true
+  },
+  creationDate: {
+    type: Date,
+    default: Date.now,
+    required: true
+
   }
 })
 
