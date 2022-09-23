@@ -2,8 +2,11 @@
   <% repos.filter(repo => repo.display).forEach( repo => { %> 
       <div class="flex flex-col justify-center w-full">
           <div class="flex flex-row h-36 md:h-24 rounded-lg bg-white shadow-lg items-between">
-              <% if (repo.image) {%>
-              <img class="w-32 h-auto rounded-t-lg object-cover md:rounded-none md:rounded-l-lg" src="<%=repo.image%>" alt="" />
+              <% if (repo.image) {
+                let baseUrl = repo.image.slice(0,49), filename = repo.image.slice(62)  
+              %>
+
+              <img class="w-32 h-auto rounded-t-lg object-cover md:rounded-none md:rounded-l-lg" src="<%=baseUrl%>/f_auto,q_90,w_256/<%=filename%>" alt="" />
               <%} else {%>
               <div class="ml-2 w-44 md:w-36 h-96 md:h-auto"></div>
               <%}%>
