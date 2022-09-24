@@ -1,0 +1,26 @@
+<section class="modal">
+        <section class="content-container modal-content">
+            <div class="flex justify-between items-center">
+                <span>&nbsp;</span>
+                <h2 class="content-center">Update Recipe: <%=repo.title%></h2>
+                <span class="close">&times;</span>
+            </div>
+            <form action="/<%=usernamePage%>/commitRecipe" method='POST'  class="flex flex-col space-y-2">
+                <label for="title">Title</label>
+                <input type="text" name="title" placeholder="Recipe Title" value="<%=repo.title%>" class="p-1 rounded">
+                <label for="notes">Notes</label>
+                <input type="text" placeholder="Notes (optional)" value="<%=repo.versions[version].notes%>" name='notes' class="p-1 rounded">
+                <!-- <label for="ingredients">Ingredients</label> -->
+                <textarea placeholder="Ingredients" name="ingredients" id="ingredients" ><%=repo.versions[version].ingredients%></textarea>
+                <!-- <label for="instructions">Instructions</label> -->
+                <textarea placeholder="Instructions" name="instructions" id="instructions" required class="p-1 rounded"><%=repo.versions[version].instructions%></textarea>
+                <input type="hidden" name="repoId" value="<%=repo._id%>">
+                <input type="submit" value="Update Recipe" class="font-bold px-4 py-2 bg-blue hover:text-brBlack cursor:pointer self-center rounded">
+            </form>
+        </section>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.19.1/ckeditor.js" integrity="sha512-Ooi9IbjM2SIDjQ02ENbPFuuORT8F8Rc+rowcYfLneDwKRxw1+gVVj5tciVmV/APnA/Ys+qy1MbNKK3k2EaAHcw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        CKEDITOR.replace('ingredients')
+        CKEDITOR.replace('instructions');
+    </script>
