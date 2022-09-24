@@ -28,7 +28,6 @@
     <section class="container flex flex-col recipe-body shadow p-4 max-w-5xl mx-auto" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
         <% if (user != null && user.username === usernamePage) {%>
             <div class="flex justify-between" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
-                <!-- <span class="del text-3xl text-blue font-bold cursor-pointer" >&times;</span> -->
                 <form action="/<%=usernamePage%>/deleteRecipe?_method=DELETE" method="POST" onsubmit="return confirm('Do you really want to delete this repository?');">
                     <input type="hidden" name="repoId" value="<%=repo._id%>">
                     <input type="hidden" name="username" value="<%=usernamePage%>">

@@ -9,7 +9,6 @@ module.exports = {
             let landedAtUser = req.baseUrl.slice(1,) || req.user
             let userToDisplay = await User.findOne({username: landedAtUser}).populate({path: 'repos', options: { sort: { 'creationDate': -1 }}}).lean()
 
-            // Make sure there is a user, and strip the password and email from the document
             if (!userToDisplay) return res.status(404).json({errors: [{msg: 'User does not exist'}]})
             userToDisplay = {
                 username: userToDisplay.username, 
@@ -30,12 +29,6 @@ module.exports = {
         } catch(err) {
             console.log(err)
         }
-    },
-    getRecipe: async (req, res) => { // unused, might be handy
-        let usernamePage = req.baseUrl.slice(1,)
-        const recipe = await Recipe.findById(req.params.recipeId).lean()
-        console.log(recipe)
-        res.render('recipe.ejs', {user: req.user, recipe: recipe, usernamePage: usernamePage})
     },
     getRepo: async (req, res) => { 
         let usernamePage = req.baseUrl.slice(1,)
