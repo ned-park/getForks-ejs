@@ -681,8 +681,8 @@ video {
   display: none;
 }
 
-.h-36 {
-  height: 9rem;
+.h-44 {
+  height: 11rem;
 }
 
 .h-auto {
@@ -1357,8 +1357,8 @@ nav {
     display: none;
   }
 
-  .md\:h-24 {
-    height: 6rem;
+  .md\:h-36 {
+    height: 9rem;
   }
 
   .md\:h-auto {

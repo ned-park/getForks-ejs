@@ -41,7 +41,11 @@ module.exports = {
         let usernamePage = req.baseUrl.slice(1,)
         const repo = await Repo.findOne({_id: req.params.repoId}).populate('versions').populate('userId').lean()
         // console.log(repo)
-        res.render('repo.ejs', {user: req.user || null, repo: repo, usernamePage: usernamePage, version: (req.query.version || repo.latest)})
+        if (repo) {
+            res.render('repo.ejs', {user: req.user || null, repo: repo, usernamePage: usernamePage, version: (req.query.version || repo.latest)})
+        } else {
+            return res.status(404).json({errors: [{msg: 'The repository you are looking for does not exist'}]})
+        }
     },
     createRepoFromRecipe: async (req, res) => {
         try {
@@ -53,7 +57,7 @@ module.exports = {
                 title: req.body.title,
                 notes: req.body.notes || '',
                 instructions: [req.body.instructions], 
-                ingredients: [req.body.ingredients], 
+                ingredients: [req.body.ingredients.replace(/<ol>/g, '<ol class="list-decimal">')], 
                 userId: req.user.id
             })
 
@@ -179,9 +183,10 @@ module.exports = {
             await Recipe.deleteMany({repo: req.body.repoId})
             await Repo.findOneAndDelete({_id:req.body.repoId})
             console.log('Deleted Repo')
-            res.redirect(204, `/${req.user.username}`)
+            res.redirect(`/${req.user.username}`)
         } catch(err) {
             console.log(err)
+            res.redirect(`/${req.user.username}`)
         }
     }
 }    
