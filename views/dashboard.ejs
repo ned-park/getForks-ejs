@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-white">
+<body class="bg-white min-h-screen flex flex-col flex-nowrap justify-start">
     <%- include('partials/header') -%>
     <article class="m-auto container max-w-5xl">
         <div class="flex justify-between items-center">
@@ -41,7 +41,6 @@
             </form>
         </section>
     </section>
-    <script src="js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.19.1/ckeditor.js" integrity="sha512-Ooi9IbjM2SIDjQ02ENbPFuuORT8F8Rc+rowcYfLneDwKRxw1+gVVj5tciVmV/APnA/Ys+qy1MbNKK3k2EaAHcw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         CKEDITOR.replace('ingredients')

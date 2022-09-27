@@ -73,23 +73,4 @@ async function deleteRecipe() {
     }
 }
 
-// async function addRecipe() {
-//     const repoId = this.parentNode.dataset.id
-//     const username = document.querySelector('h1').getAttribute('data-user')
-//     try {
-//         const response = await fetch(`/${username}/addRecipe`, {
-//             method: 'put',
-//             headers: {'Content-type': 'application/json'},
-//             body: JSON.stringify({
-//                 'repoId': repoId,
-//                 'title': 
-//             })
-//         })
-//         const data = await response.json()
-//         console.log(data)
-//         location.reload()
-//     } catch(err) {
-//         console.log(err)
-//     }
-// }
 
