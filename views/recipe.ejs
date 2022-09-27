@@ -29,18 +29,4 @@
             <p>Instructions: <%=recipe.instructions%></p>
             <p>Id: <%=recipe._id%></p>
         </section>
-    <!-- Make edit into modal possibly a drop-in partial view for it to avoid wet code? -->
-    <!-- <div class="form flex col">
-        <h2></h2>
-        <form action="/dashboard/createRecipe" method='POST' class="flex col">
-            <input type="text" name="title" placeholder="Recipe Title">
-            <input type="text" placeholder="Description (optional)" name='description'>
-            <input type="text" placeholder="Ingredients" name='ingredients'>
-            <input type="text" placeholder="Instructions" name='instructions'>
-            <input type="submit" value="Create Recipe">
-        </form>
-    </div> -->
-
-    <script src="../js/main.js"></script>
-</body>
-</html>
+        <%- include('partials/footer') -%>
