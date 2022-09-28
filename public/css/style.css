@@ -669,6 +669,10 @@ video {
   margin-top: 1rem;
 }
 
+.mt-auto {
+  margin-top: auto;
+}
+
 .mt-3 {
   margin-top: 0.75rem;
 }
@@ -683,6 +687,14 @@ video {
 
 .ml-2 {
   margin-left: 0.5rem;
+}
+
+.mt-48 {
+  margin-top: 12rem;
+}
+
+.mt-32 {
+  margin-top: 8rem;
 }
 
 .block {
@@ -863,6 +875,10 @@ video {
 
 .self-center {
   align-self: center;
+}
+
+.justify-self-start {
+  justify-self: start;
 }
 
 .justify-self-end {
