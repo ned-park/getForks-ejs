@@ -41,7 +41,7 @@
                         <input type="submit" value="&times;" class="font-bold text-3xl text-blue hover:text-brBlack cursor:pointer">
                     </a>
                 </form>
-                <h1 class="font-bold text-3xl text-center" data-username="<%=usernamePage%>"><%=repo.title%></h1>
+                <h1 class="font-bold text-3xl text-center" data-username="<%=usernamePage%>"><%=repo.versions[version].title%></h1>
                 <span class='edit text-3xl text-blue font-bold cursor-pointer'>&cup;</span>
             </div>
         <% } else if (user != null){ %>
@@ -51,10 +51,10 @@
                     <input type="hidden" name="repoId" value="<%=repo._id%>">
                 </form>
             </div>       
-            <h1 class="font-bold text-3xl text-center" data-username="<%=usernamePage%>"><%=repo.title%></h1>
+            <h1 class="font-bold text-3xl text-center" data-username="<%=usernamePage%>"><%=repo.versions[version].title%></h1>
             
         <% } else  {%>
-            <h1 class="font-bold text-3xl text-center" data-username="<%=usernamePage%>"><%=repo.title%></h1>
+            <h1 class="font-bold text-3xl text-center" data-username="<%=usernamePage%>"><%=repo.versions[version].title%></h1>
         <% } %>
         
 
