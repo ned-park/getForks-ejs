@@ -34,13 +34,25 @@
     <section class="container flex flex-col recipe-body shadow p-4 md:p-8 max-w-5xl mx-auto mb-32" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
         <% if (user != null && user.username === usernamePage) {%>
             <div class="flex justify-between" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
-                <form action="/<%=usernamePage%>/deleteRecipe?_method=DELETE" method="POST" onsubmit="return confirm('Do you really want to delete this repository?');">
-                    <input type="hidden" name="repoId" value="<%=repo._id%>">
-                    <input type="hidden" name="username" value="<%=usernamePage%>">
-                    <a href="/<%=usernamePage%>">
-                        <input type="submit" value="&times;" class="font-bold text-3xl text-blue hover:text-brBlack cursor:pointer">
-                    </a>
-                </form>
+                <div>
+                    <form action="/<%=usernamePage%>/deleteRecipe?_method=DELETE" method="POST" onsubmit="return confirm('Do you really want to delete this repository?');">
+                        <input type="hidden" name="repoId" value="<%=repo._id%>">
+                        <input type="hidden" name="username" value="<%=usernamePage%>">
+                        <a href="/<%=usernamePage%>">
+                            <input type="submit" value="&times;" class="font-bold text-3xl text-blue hover:text-brBlack cursor:pointer">
+                        </a>
+                    </form>
+                    <form action="/<%=usernamePage%>/editRepoImage?_method=PUT" method="POST" enctype="multipart/form-data" >
+                        <input type="hidden" name="repoId" value="<%=repo._id%>">
+                        <input type="hidden" name="username" value="<%=usernamePage%>">
+                        <div class="flex justify-start items-center">
+                            <label for="imgUpload" class="form-label">Image (optional): </label>
+                            <input type="file" id="imageUpload" name="file" placeholder="" class="form-control px-4 py-2 hover:text-brBlack cursor:pointer self-start rounded">
+                        </div>
+                        <input type="submit" value="Change Image" class="font-bold text-3xl text-blue hover:text-brBlack cursor:pointer">
+
+                    </form>
+                </div>
                 <h1 class="font-bold text-3xl text-center" data-username="<%=usernamePage%>"><%=repo.versions[version].title%></h1>
                 <span class='edit text-3xl text-blue font-bold cursor-pointer'>&cup;</span>
             </div>

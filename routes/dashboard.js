@@ -16,4 +16,6 @@ router.delete('/deleteRecipe', ensureAuth, dashboardController.deleteRecipe)
 
 router.get('/:repoId', dashboardController.getRepo)
 
+router.put('/editRepoImage', ensureAuth, upload.single("file"), dashboardController.editRepoImage)
+
 module.exports = router

@@ -44,6 +44,19 @@ module.exports = {
             return res.status(404).json({ errors: [{ msg: 'The repository you are looking for does not exist' }] })
         }
     },
+    editRepoImage: async (req, res) => {
+        try {
+            let image
+            if (req.file) image = await cloudinary.uploader.upload(req.file.path);
+            await Repo.findByIdAndUpdate(req.body.repoId, {
+                image: image.secure_url,
+                cloudinaryId: image.public_id
+            })
+            res.redirect(`/${req.user.username}/${req.body.repoId}`)
+        } catch (err) {
+            console.log(err)
+        }
+    },
     createRepoFromRecipe: async (req, res) => {
         try {
             console.log(req.file)
