@@ -14,7 +14,7 @@ const mainRoutes = require('./routes/main')
 const aboutRoutes = require('./routes/about')
 const searchRoutes = require('./routes/search')
 const dashboardRoutes = require('./routes/dashboard')
-
+const commentRoutes = require('./routes/comment')
 
 require('dotenv').config()
 
@@ -54,8 +54,9 @@ app.use(removeTrailingSlash)
 app.use('/', mainRoutes)
 app.use('/search', searchRoutes)
 app.use('/about', aboutRoutes)
+app.use('/comment', commentRoutes)
 app.use('/:user', dashboardRoutes)
- 
+
 app.listen(process.env.PORT, ()=>{
     console.log(`Server is running on port: ${process.env.PORT}`)
 })    

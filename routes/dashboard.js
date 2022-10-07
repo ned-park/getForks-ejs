@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const upload = require("../middleware/multer")
 const dashboardController = require('../controllers/dashboard') 
+const commentController = require('../controllers/comment') 
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
 
 router.get('/', dashboardController.getUser)
