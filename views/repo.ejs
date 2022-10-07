@@ -82,21 +82,37 @@
 
         <section class="container flex flex-col justify-start mt-16" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
             <h2 class="text-center text-2xl font-bold">Comments</h2>
-    
-            <section class="mx-auto flex flex-col justify-start gap-2">
-                <form action="/comment/createComment/<%=repo._id%>" method="POST" class="flex flex-col space-y-2">
+            <section>
+                <%comments.forEach(comment => { %>
+                    <div>
+                        
+                    <div class="flex flex-row justify-between">
+                        <span class="text-xs"><a href="/<%=comment.userId.username%>"><%=comment.userId.username%></a> says:</span>
+                        <span class="text-xs"><%=comment.date.toLocaleString()%></span>
+                    </div>
+                    <div><%=comment.content%> <% if (user != null && user.username === comment.userId.username) {%>
+                        <form action="/comment/deleteComment/<%=comment._id%>?_method=DELETE" method="POST" class="text-right">
+                            <input type="hidden" name="usernamePage" value="<%=usernamePage%>">
+                            <input type="hidden" name="repoId" value="<%=repo._id%>">
+                            <input type="submit" value="delete" class=" text-sm font-bold px-2 py-1 bg-blue hover:text-brBlack cursor:pointer self-center rounded">
+                        </form>
+                    <% } %></div>
+                </div>
+
+                <% }) %>
+            </section>
+            <section class="mx flex flex-col justify-start gap-2">
+                <form action="/comment/createComment/<%=repo._id%>" method="POST" class="flex flex-col mt-32">
                     <div>
                         <label for="content">Comment:</label>
-                        <input type="text" name="content" id="content" class="p-1 rounded">
+                        <input type="text" name="content" id="content" class="p-1 rounded" required>
                         <input type="hidden" name="repoId" value="<%=repo._id%>">
                         <input type="hidden" name="usernamePage" value="<%=usernamePage%>">
                         <input type="submit" value="Comment" class="font-bold px-2 py-1 bg-blue hover:text-brBlack cursor:pointer self-center rounded">
                     </div>
                 </form>
             </section>
-            
         </section>
-
     </section>
     
     <%-include('partials/editmodal')-%>

@@ -5,6 +5,6 @@ const { ensureAuth } = require('../middleware/auth')
 
 router.post('/createComment/:id', ensureAuth, commentController.createComment)
 
-router.delete('/deleteRecipe/:id', ensureAuth, commentController.deleteComment)
+router.delete('/deleteComment/:id', ensureAuth, commentController.deleteComment)
 
 module.exports = router

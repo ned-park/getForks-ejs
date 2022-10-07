@@ -689,10 +689,6 @@ video {
   margin-left: 0.5rem;
 }
 
-.mb-auto {
-  margin-bottom: auto;
-}
-
 .block {
   display: block;
 }
@@ -986,9 +982,9 @@ video {
   padding-right: 0.75rem;
 }
 
-.py-8 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .py-1 {
@@ -996,9 +992,9 @@ video {
   padding-bottom: 0.25rem;
 }
 
-.px-2 {
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .pl-4 {
@@ -1027,6 +1023,10 @@ video {
 
 .text-center {
   text-align: center;
+}
+
+.text-right {
+  text-align: right;
 }
 
 .text-justify {

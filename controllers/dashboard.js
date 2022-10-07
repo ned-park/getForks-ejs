@@ -2,6 +2,7 @@ const cloudinary = require("../middleware/cloudinary");
 const Recipe = require('../models/Recipe')
 const Repo = require('../models/Repo')
 const User = require('../models/User')
+const Comment = require('../models/Comment')
 
 module.exports = {
     getUser: async (req, res) => {
@@ -33,13 +34,14 @@ module.exports = {
     getRepo: async (req, res) => {
         let usernamePage = req.baseUrl.slice(1,)
         const repo = await Repo.findOne({ _id: req.params.repoId }).populate('versions').populate('userId').lean()
+        const comments = await Comment.find({ repoId: req.params.repoId }).populate('userId').lean()
         let forkedFrom = null
         if (repo.forkedFrom) {
             forkedFrom = await Repo.findOne({ _id: repo.forkedFrom }).populate('versions').populate('userId').lean()
         }
         // console.log(repo)
         if (repo) {
-            res.render('repo.ejs', { user: req.user || null, repo: repo, usernamePage: usernamePage, version: (req.query.version || repo.latest), forkedFrom: forkedFrom})
+            res.render('repo.ejs', { user: req.user || null, repo: repo, usernamePage: usernamePage, version: (req.query.version || repo.latest), forkedFrom: forkedFrom, comments: comments})
         } else {
             return res.status(404).json({ errors: [{ msg: 'The repository you are looking for does not exist' }] })
         }
