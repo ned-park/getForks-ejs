@@ -4,12 +4,12 @@ module.exports = {
     createComment: async (req, res) => {
         try {
             await Comment.create({
-                ccontent: req.body.comment,
-                repoId: req.params.id,
-                user: req.user.id,
+                content: req.body.content,
+                repoId: req.body.repoId,
+                userId: req.user.id,
             });
             console.log("Comment has been added!");
-            res.redirect(`/post/${req.params.id}`);
+            res.redirect(`/${req.body.usernamePage}/${req.params.id}`);
         } catch (err) {
             console.log(err); 
         }

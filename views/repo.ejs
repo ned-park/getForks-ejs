@@ -79,6 +79,25 @@
         <h2 class="font-bold text-xl my-2">Tags:</h2>
         <div class="text-left"><span><%repo.tags.forEach(tag => {%><a href="/search?query=<%=tag%>" class="hover:text-blue cursor:pointer"><span><%=tag%></span></a> <%})%></span></div>
 
+
+        <section class="container flex flex-col justify-start mt-16" data-id="<%=repo._id%>" data-username="<%=usernamePage%>">
+            <h2 class="text-center text-2xl font-bold">Comments</h2>
+    
+            <section class="mx-auto flex flex-col justify-start gap-2">
+                <form action="/comment/createComment/<%=repo._id%>" method="POST" class="flex flex-col space-y-2">
+                    <div>
+                        <label for="content">Comment:</label>
+                        <input type="text" name="content" id="content" class="p-1 rounded">
+                        <input type="hidden" name="repoId" value="<%=repo._id%>">
+                        <input type="hidden" name="usernamePage" value="<%=usernamePage%>">
+                        <input type="submit" value="Comment" class="font-bold px-2 py-1 bg-blue hover:text-brBlack cursor:pointer self-center rounded">
+                    </div>
+                </form>
+            </section>
+            
+        </section>
+
     </section>
+    
     <%-include('partials/editmodal')-%>
     <%- include('partials/footer') -%>
