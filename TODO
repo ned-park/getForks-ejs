@@ -1,18 +1,5 @@
-style pages
-  Footer partial?
-  Forms
-  Improve modal + form
-
-Fork recipes -> limit to single fork per user
-
 Search functionalities
   by user
   by ingredient
   by tag?
-
-  Media Queries
-    login/signup based on signin width
-
-
-Markdown + instruction/ingredient formatting? + preview
 

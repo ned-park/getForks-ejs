@@ -193,6 +193,7 @@ module.exports = {
                 { new: true }
             )
             await Recipe.deleteMany({ repo: req.body.repoId })
+            await Comment.deleteMany({ repoId: req.body.repoId })
             await Repo.findOneAndDelete({ _id: req.body.repoId })
             console.log('Deleted Repo')
             res.redirect(`/${req.user.username}`)

@@ -13,7 +13,7 @@ getForks is live! Visit [https://getforks.herokuapp.com/](https://getforks.herok
 
 # Technology Packages/Dependencies used 
 
-bcrypt, ckeditorconnect-mongo, dotenv, ejs, express, express-flash, express-session, javascript, mongodb, mongoose, morgan, node, nodemon, passport, passport-local, tailwind, validator, 
+bcrypt, ckeditorconnect-mongo, dotenv, ejs, express, express-flash, express-session, javascript, mongodb, mongoose, morgan, node, nodemon, passport, passport-local, tailwind, validator
 
 ---
 
@@ -45,4 +45,9 @@ For a production
 npm start
 ```
 
+---
 
+# Optimizations
+
+Change comments into a Tree to support nesting and direct replies
+Add support for pull requests and merging
