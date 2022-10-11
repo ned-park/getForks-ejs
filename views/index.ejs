@@ -19,5 +19,15 @@
             </form>
         </div>
         <%- include('partials/repos') -%>
+        <% if (repos.length === 0) { %>
+            <div>
+                <p>That's all we can find.  Would you like to return <a href="/" class="font-bold hover:text-brBlack cursor:pointer self-center">Home</a>?
+                </p>
+            </div>
+        <% } else { %>
+            <div class="text-right mb-16 px-6">
+                    <a href="/?page=<%=+page+1%>&limit=<%=limit%>" class="font-bold px-4 py-2 bg-blue hover:text-brBlack cursor:pointer self-center rounded mt-8">Next</a>
+            </div>
+        <% } %>
     </article>
     <%- include('partials/footer') -%>
