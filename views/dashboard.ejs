@@ -27,12 +27,18 @@
             <span class="close text-3xl font-bold">&times;</span>
             <h2 class="text-center font-bold text-xl mb-4">Add Recipe</h2>
             <form action="/<%=usernamePage%>/createRecipe" method='POST' enctype="multipart/form-data" class="flex flex-col space-y-2" required>
+                <label for="title">Title</label>
                 <input type="text" name="title" placeholder="Recipe Title" required class="p-1 rounded">
-                <input type="text" placeholder="Description (optional)" name='description' class="p-1 rounded">
-                <input type="text" placeholder="Notes (optional)" name='notes' class="p-1 rounded">
-                <textarea placeholder="Ingredients" name='ingredients' id="ingredients" ></textarea>
-                <textarea placeholder="Instructions" name='instructions' id="instructions" required class="p-1 rounded"></textarea>
-                <input type="text" placeholder="Space separated tags" name='tags' class="p-1 rounded">
+                <label for="description">Description</label>
+                <input type="text" placeholder="Description (optional)" name="description" class="p-1 rounded">
+                <label for="notes">Notes</label>
+                <input type="text" placeholder="Notes (optional)" name="notes" class="p-1 rounded">
+                <label for="ingredients">Ingredients</label>
+                <textarea placeholder="Ingredients" name="ingredients" id="ingredients" ></textarea>
+                <label for="instructions">Instructions</label>
+                <textarea placeholder="Instructions" name="instructions" id="instructions" required class="p-1 rounded"></textarea>
+                <label for="tags">Tags</label>
+                <input type="text" placeholder="Space separated tags" name="tags" class="p-1 rounded">
                 <div class="flex justify-start items-center">
                     <label for="imgUpload" class="form-label">Image (optional): </label>
                     <input type="file" id="imageUpload" name="file" placeholder="" class="form-control px-4 py-2 hover:text-brBlack cursor:pointer self-start rounded" required>
