@@ -693,10 +693,6 @@ video {
   margin-left: 0.5rem;
 }
 
-.mr-16 {
-  margin-right: 4rem;
-}
-
 .block {
   display: block;
 }
@@ -1428,10 +1424,6 @@ ol {
     margin-top: 0px;
   }
 
-  .sm\:mr-32 {
-    margin-right: 8rem;
-  }
-
   .sm\:w-auto {
     width: auto;
   }
@@ -1460,10 +1452,6 @@ ol {
 
   .md\:mr-6 {
     margin-right: 1.5rem;
-  }
-
-  .md\:mr-16 {
-    margin-right: 4rem;
   }
 
   .md\:block {
