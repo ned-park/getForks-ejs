@@ -6,7 +6,7 @@ Since recipes are (generally) simpler than software, the complexities of version
 
 ![image of getForks site](https://raw.githubusercontent.com/ned-park/getForks/main/readme_image.jpg)
 
-getForks is live! Visit [https://getforks.herokuapp.com/](https://getforks.herokuapp.com/) to give it a try.
+A demo of getForks is live! Visit [https://getforks.onrender.com/](https://getforks.onrender.com/) to give it a try.
 
 
 ---
